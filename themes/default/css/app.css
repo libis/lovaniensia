@@ -6671,21 +6671,12 @@ header .container {
   width: 100%;
 }
 
-.home .carousel-lov .slick-prev {
-  left: -45px;
-}
-
-.home .carousel-lov .slick-next {
-  right: -45px;
-}
-
 .home .carousel-lov .slick-prev, .home .carousel-lov .slick-next {
   font-size: 0;
   line-height: 0;
   position: absolute;
   top: 50%;
   display: block;
-  width: 30px;
   margin-top: -10px;
   padding: 0;
   cursor: pointer;
@@ -6708,12 +6699,23 @@ header .container {
   font-size: 3rem;
   opacity: .75;
   color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 105, 92, 0.5);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+.home .carousel-lov .slick-prev {
+  left: 10px !important;
+  z-index: 1000;
+}
+
+.home .carousel-lov .slick-next {
+  right: 10px !important;
+  z-index: 1000;
+}
+
 .home .slick-slide {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #4C968D;
 }
 
 .home .features {
@@ -6758,8 +6760,8 @@ header .container {
 .home .features .card .card-block {
   background: none;
   padding: 3rem;
-  background: #4C968D;
   color: white;
+  background: rgba(0, 105, 92, 0.1);
 }
 
 .home .features .card .card-block h3 {
@@ -6793,14 +6795,17 @@ header .container {
 .home .features .card .card-footer {
   background: none;
   text-align: right;
+  border: none;
   padding: 1rem 0 0 0;
 }
 
 .home .features .card .card-footer a {
   color: #fff;
+  border-bottom: 3px solid rgba(0, 105, 92, 0.5);
   font-weight: bold;
+  padding: 3px;
   font-family: "Raleway", sans-serif;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 
 .home .features .card .card-footer a:hover {

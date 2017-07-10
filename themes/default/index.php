@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="">&#x0203A; View item</a>
+                            <a href="">View item</a>
                         </div>
                     </div>
                 </div>
