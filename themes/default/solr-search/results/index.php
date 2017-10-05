@@ -11,38 +11,43 @@
     <div id="content" class='container' role="main" tabindex="-1">
         <div class="row">
             <div class="features col-md-12 col-xs-12">
-              <h1>Collection (<?php echo $results->response->numFound; ?>)</h1>
+              <!--<h1>Collection (<?php echo $results->response->numFound; ?>)</h1>-->
               <form id="solr-search-form">
-                  <input title="Search keywords" name="q" placeholder="Search the Collection" value="" type="text">
-                  <button type="submit"><i class="material-icons"></i></button>
+                <div class="input-group">
+                  <input class="form-control" title="Search keywords" name="q" placeholder="Search the Collection" value="" type="text">
+                  <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button"><i class="material-icons"></i></button>
+                  </span>
+                </div>
               </form>
-              <!--<p class="filter">Explore by: <a href="">collection</a>, <a href="">contribution</a> or <a href="">place of printing</a></p>-->
+              <p class="filter">Explore by: <a href="">collection</a>, <a href="">contribution</a> or <a href="">place of printing</a></p>
             </div>
         </div>
     </div>
 </section>
 
 <div class="content-wrapper bs-docs-section solr-section-applied">
-  <div class="container-fluid solr-container">
-    <!-- Applied facets. -->
-    <div id="solr-applied-facets">
-      <ul>
-        <!-- Get the applied facets. -->
-        <?php foreach (SolrSearch_Helpers_Facet::parseFacets() as $f) : ?>
-          <li>
+  <div class="container solr-container">
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
+        <!-- Applied facets. -->
+        <div id="solr-applied-facets">
+          <ul>
+            <!-- Get the applied facets. -->
+            <?php foreach (SolrSearch_Helpers_Facet::parseFacets() as $f) : ?>
+              <li>
+                <!-- Facet label. -->
+                <?php $label = SolrSearch_Helpers_Facet::keyToLabel($f[0]); ?>
+                <span class="applied-facet-label"><?php echo $label; ?></span> >
+                <span class="applied-facet-value"><?php echo $f[1]; ?></span>
 
-            <!-- Facet label. -->
-            <?php $label = SolrSearch_Helpers_Facet::keyToLabel($f[0]); ?>
-            <span class="applied-facet-label"><?php echo $label; ?></span> >
-            <span class="applied-facet-value"><?php echo $f[1]; ?></span>
-
-            <!-- Remove link. -->
-            <?php $url = SolrSearch_Helpers_Facet::removeFacet($f[0], $f[1]); ?>
-            <a href="<?php echo $url; ?>"><i class="material-icons">&#xE14C;</i></a>
-
-          </li>
-        <?php endforeach; ?>
-      </ul>
+                <!-- Remove link. -->
+                <?php $url = SolrSearch_Helpers_Facet::removeFacet($f[0], $f[1]); ?>
+                <a href="<?php echo $url; ?>"><i class="material-icons">&#xE14C;</i></a>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -88,13 +93,8 @@
 
           </div>
           <div class="solr-results col-md-9 col-xs-12">
+            <?php echo pagination_links(); ?>
             <!-- Results. -->
-
-            <!-- Number found. -->
-            <h2 id="num-found">
-                <?php echo $results->response->numFound; ?> results
-            </h2>
-
             <?php foreach ($results->response->docs as $doc) : ?>
 
               <!-- Document. -->
@@ -139,12 +139,11 @@
                     ?>
                 </div>
               </div>
-
             <?php endforeach; ?>
+            <?php echo pagination_links(); ?>
         </div>
     </div>
 
-    <?php echo pagination_links(); ?>
   </div>
 </div>
 <?php echo foot();

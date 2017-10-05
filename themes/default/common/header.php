@@ -22,12 +22,13 @@
     <!-- Stylesheets -->
     <?php
     queue_css_file(array('iconfonts', 'app'));
-    queue_css_url('https://fonts.googleapis.com/css?family=Droid+Serif:400,700|Raleway:300,400,600,700');
+    queue_css_url('https://fonts.googleapis.com/css?family=Droid+Serif:400,700|Raleway:100,300,400,600,700');
     echo head_css();
     echo theme_header_background();
 
     ?>
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+  
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
     <?php
       queue_js_file('masonry');
       echo head_js();
@@ -45,10 +46,10 @@
     <?php fire_plugin_hook('public_body', array('view' => $this)); ?>
         <header role="banner">
             <nav class="navbar public-nav">
-              <div class="container-fluid">
+              <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <button class="navbar-toggler pull-xs-left" type="button" data-toggle="modal" data-target="#modalNav" aria-controls="exCollapsingNavbar2">
+                    <button class="navbar-toggler pull-xs-right" type="button" data-toggle="modal" data-target="#modalNav" aria-controls="exCollapsingNavbar2">
                       &#9776;
                     </button>
                     <a class="navbar-brand" href="<?php echo WEB_ROOT;?>">Lovaniensia</a>
@@ -58,13 +59,13 @@
                     </form>
                   </div>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                   <div class="col-md-12">
                     <div class="collapse" id="exCollapsingNavbar2">
                     <?php echo public_nav_main(array('role' => 'navigation')) -> setUlClass('nav navbar-nav'); ?>
                     </div>
                   </div>
-                </div>
+                </div>-->
               </div>
             </nav>
             <?php fire_plugin_hook('public_header', array('view' => $this)); ?>

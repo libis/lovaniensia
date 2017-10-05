@@ -6,45 +6,25 @@
                     <p><?php echo $copyright; ?></p>
                 <?php endif; ?>
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-md-12 col-lg-7">
+                      <div class="logo-row">
                         <img src="<?php echo img("KULEUVEN.png");?>">
+                        <img src="<?php echo img("ucl.jpg");?>">
+                        <img src="<?php echo img("libis_gray.png");?>">
+                      </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-xs-12 col-md-3">
                         <p>Straatstraat 22<br>
                             3000 Leuven<br>
                             016222222<br>
                         .....</p>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 col-md-2 col-xs-12">
                         <ul>
                             <li><a href="">Menu item 1</a></li>
                             <li><a href="">Menu item 1</a></li>
                             <li><a href="">Menu item 1</a></li>
                             <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-2">
-                        <ul>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-2">
-                        <ul>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-                            <li><a href="">Menu item 1</a></li>
-
                         </ul>
                     </div>
 

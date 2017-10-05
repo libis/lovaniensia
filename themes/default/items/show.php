@@ -1,17 +1,25 @@
 <?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'item show')); ?>
 <?php $type = metadata('item','item_type_name');?>
+<div class="content-wrapper breadcrumbs-section ">
+  <div class="container simple-page-container">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 page">
+            <div class='row breadcrumbs'>
+              <div class="col-xs-12">
+                <p id="simple-pages-breadcrumbs">
+                  <span><a href="<?php echo url('/');?>">Home</a></span>
+                   > <span><a href="<?php echo url('/solr-search');?>"><?php echo __("Collection");?></a></span>
+                   > <?php echo metadata('item', array('Dublin Core', 'Title')); ?>
+                 </p>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
 <?php if (metadata('item', 'has files') && $type != 'News'): ?>
   <section class="item-section general-section">
       <div class="container-fluid">
-        <div class='row breadcrumbs'>
-          <div class="col-xs-12">
-              <p id="simple-pages-breadcrumbs">
-                <span><a href="<?php echo url('/');?>">Home</a></span>
-                 > <span><a href="<?php echo $type;?>"><?php echo $type;?></a></span>
-                 > <?php echo metadata('item', array('Dublin Core', 'Title')); ?>
-               </p>
-           </div>
-        </div>
           <div class="row image-row">
             <!-- The following returns all of the files associated with an item. -->
             <div id="itemfiles" class="element">
@@ -22,7 +30,7 @@
   </section>
 <?php endif; ?>
 <section class="metadata-section general-section">
-    <div id="content" class='container-fluid' role="main" tabindex="-1">
+    <div id="content" class='container' role="main" tabindex="-1">
         <?php if ($type == 'News'): ?>
           <div class='row breadcrumbs'>
             <div class="col-xs-12">
@@ -46,20 +54,17 @@
               <div class="col-sm-12 col-xs-12 page">
             <?php endif; ?>
                     <?php if ($type != ''): ?>
-                      <!--<h3 class="type-title"><?php echo $type;?></h3>-->
+                      <h3 class="type-title"><?php echo $type;?></h3>
                     <?php endif; ?>
                     <h1 class="section-title projecten-title"><span><?php echo metadata('item', array('Dublin Core', 'Title')); ?></span></h1>
 
                     <?php if ($type != 'News'): ?>
-                        <?php echo all_element_texts('item'); ?>
-
                         <!-- If the item belongs to a collection, the following creates a link to that collection. -->
                         <?php if (metadata('item', 'Collection Name')): ?>
-                        <div id="collection" class="element">
-                            <h3><?php echo __('Collection'); ?></h3>
-                            <div class="element-text"><p><?php echo link_to_collection_for_item(); ?></p></div>
-                        </div>
+                          <h3 id="collection"><?php echo __('Collection'); ?>: <?php echo link_to_collection_for_item(); ?></h3>
                         <?php endif; ?>
+
+                        <?php echo all_element_texts('item'); ?>
 
                         <!-- The following prints a list of all tags associated with the item -->
                         <?php if (metadata('item', 'has tags')): ?>
@@ -70,10 +75,10 @@
                         <?php endif;?>
 
                         <!-- The following prints a citation for this item. -->
-                        <div id="item-citation" class="element">
+                        <!--<div id="item-citation" class="element">
                             <h3><?php echo __('Citation'); ?></h3>
                             <div class="element-text"><?php echo metadata('item', 'citation', array('no_escape' => true)); ?></div>
-                        </div>
+                        </div>-->
                     <?php else:?>
                           <p class="date"><?php echo metadata('item', array('Dublin Core', 'Date')); ?></p>
                           <p class="description"><?php echo metadata('item', array('Dublin Core', 'Description')); ?></p>
@@ -85,10 +90,8 @@
                     <li id="next-item" class="next"><?php echo link_to_next_item_show('Next &#8250;'); ?></li>
                 </ul>
                 </nav>
-
         </div>
     </div>
-
 </section>
 
 <?php echo foot(); ?>
