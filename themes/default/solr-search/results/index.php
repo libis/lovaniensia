@@ -16,7 +16,7 @@
                 <div class="input-group">
                   <input class="form-control" title="Search keywords" name="q" placeholder="Search the Collection" value="" type="text">
                   <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button"><i class="material-icons"></i></button>
+                  <button class="btn btn-secondary" type="submit"><i class="material-icons"></i></button>
                   </span>
                 </div>
               </form>

@@ -31,3 +31,7 @@ function libis_get_simple_page_content($title) {
         return false;
     endif;
 }
+
+function libis_get_featured_items(){
+  $items = get_records('items',array('featured' => true),5);
+}

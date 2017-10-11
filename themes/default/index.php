@@ -21,11 +21,11 @@
     <div id="content" class='container' role="main" tabindex="-1">
         <div class="row">
             <div class="features col-md-10 offset-md-1 col-xs-12">
-              <form id="solr-search-form">
+              <form id="solr-search-form" action="<?php echo url("solr-search");?>">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search the Collection" aria-label="Search for...">
+                <input type="text" class="form-control" name="q" placeholder="Search the Collection" aria-label="Search for...">
                 <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button"><i class="material-icons"></i></button>
+                  <button class="btn btn-secondary" type="submit"><i class="material-icons"></i></button>
                 </span>
               </div>
               </form>
@@ -37,93 +37,61 @@
 <section class="home">
     <div id="content" class='container' role="main" tabindex="-1">
       <div class="carousel-lov">
+        <?php $items = get_records('Item',array('featured' => true),5);?>
+        <?php foreach($items as $item):?>
           <div class="row">
               <div class="features image-lov col-md-5 col-xs-12">
                   <div class="card card-image">
-                      <img class="card-img-cap" src="<?php echo img('ph/bg6.png');?>" alt="Card image">
+                    <?php echo link_to_item(item_image('fullsize', array('class' => 'card-img-cap'),0,$item),array(),'show',$item); ?>
                   </div>
               </div>
               <div class="features col-md-7 col-xs-12">
-                    <div class="card card-text">
-                        <h1 class="section-title projecten-title">
-                          <span>Stirpivm historiæ pemptades sex sive libri XXX</span>
-                        </h1>
+                  <div class="card card-text">
+                      <h1 class="section-title projecten-title">
+                        <span><?php echo metadata($item, array('Dublin Core','Title'));?></span>
+                      </h1>
+                      <?php if($text = metadata($item, array('Dublin Core','Description'))):?>
                         <div class="description element">
                           <div class="element-text">
-                            <p>Heruitgave van het Latijnse Cruydeboeck uit 1583. Voor de titelpagina werd dezelfde gravure gebruikt als in Clusius' <em>Rariorum Plantarum Historia</em>, dat ook bij Plantijn werd gedrukt.</p>
+                            <div class="element-text"><p><?php echo $text;?></p></div>
                           </div>
                         </div>
-                        <div class="card-block">
-                            <div id="collection" class="element">
-                                <h3>Onderwerp</h3>
-                                <div class="element-text"><p>Botanica</p></div>
-                            </div>
-                            <div id="collection" class="element">
-                                <h3>Maker</h3>
-                                <div class="element-text"><p>Rembert Dodoens</p></div>
-                            </div>
-                            <div id="collection" class="element">
-                                <h3>Datum</h3>
-                                <div class="element-text"><p>1616</p></div>
-                            </div>
-                            <div id="collection" class="element">
-                                <h3>Uitgever</h3>
-                                <div class="element-text"><p>Balthasar en Jan Moretus, Plantijn, Antwerpen. Balthasar en Jan Moretus, Plantijn, Antwerpen</p></div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="">View item<i class="material-icons">&#xE315;</i></a>
-                        </div>
-                    </div>
-                </div>
+                      <?php endif;?>
+                      <div class="card-block">
+                        <?php if($text = metadata($item, array('Dublin Core','Subject'))):?>
+                          <div id="collection" class="element">
+                              <h3><?php echo __('Subject');?></h3>
+                              <div class="element-text"><p><?php echo $text;?></p></div>
+                          </div>
+                        <?php endif;?>
+                        <?php if($text = metadata($item, array('Dublin Core','Creator'))):?>
+                          <div id="collection" class="element">
+                              <h3><?php echo __('Creator');?></h3>
+                              <div class="element-text"><p><?php echo $text;?></p></div>
+                          </div>
+                        <?php endif;?>
+                        <?php if($text = metadata($item, array('Dublin Core','Date'))):?>
+                          <div id="collection" class="element">
+                              <h3><?php echo __('Date');?></h3>
+                              <div class="element-text"><p><?php echo $text;?></p></div>
+                          </div>
+                        <?php endif;?>
+                        <?php if($text = metadata($item, array('Dublin Core','Publisher'))):?>
+                          <div id="collection" class="element">
+                              <h3><?php echo __('Publisher');?></h3>
+                              <div class="element-text"><p><?php echo $text;?></p></div>
+                          </div>
+                        <?php endif;?>
+                      </div>
+                      <div class="card-footer">
+                          <a href="">View item<i class="material-icons">&#xE315;</i></a>
+                      </div>
+                  </div>
               </div>
-              <div class="row">
-                  <div class="features image-lov col-md-5 col-xs-12">
-                      <div class="card card-image">
-                          <img class="card-img-cap" src="<?php echo img('ph/home3.jpeg');?>" alt="Card image">
-                      </div>
-                  </div>
-                  <div class="features col-md-7 col-xs-12">
-                      <div class="card card-text">
-                          <h1 class="section-title projecten-title">
-                            <span>Proin sit amet magna</span>
-                          </h1>
-                          <div class="description element">
-                            <div class="element-text">
-                              <p>Heruitgave van het Latijnse Cruydeboeck uit 1583. Voor de titelpagina werd dezelfde gravure gebruikt als in Clusius' <em>Rariorum Plantarum Historia</em>, dat ook bij Plantijn werd gedrukt.</p>
-                            </div>
-                          </div>
-
-                          <div class="card-block">
-                              <div id="collection" class="element">
-                                  <h3>Onderwerp</h3>
-                                  <div class="element-text"><p>Botanica</p></div>
-                              </div>
-
-                              <div id="collection" class="element">
-                                  <h3>Maker</h3>
-                                  <div class="element-text"><p>Rembert Dodoens</p></div>
-                              </div>
-
-                              <div id="collection" class="element">
-                                  <h3>Datum</h3>
-                                  <div class="element-text"><p>1616</p></div>
-                              </div>
-
-                              <div id="collection" class="element">
-                                  <h3>Uitgever</h3>
-                                  <div class="element-text"><p>Balthasar en Jan Moretus, Plantijn, Antwerpen</p></div>
-                              </div>
-                          </div>
-                          <div class="card-footer">
-                              <a href="">View item<i class="material-icons">&#xE315;</i></a>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-           </div>
+          </div>
+          <?php endforeach;?>
        </div>
-   </div>
+     </div>
 </section>
 <section class="news">
   <div class="container">
