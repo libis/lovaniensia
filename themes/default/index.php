@@ -8,9 +8,9 @@
                     <?php echo libis_get_simple_page_content("homepage-info");?>
                 </div>
                 <div class="more col-xs-12 col-md-4 col-xl-4">
-                    <p><i class="material-icons">&#xE5C8;</i><a href="">Read more</a></p>
-                    <p><i class="material-icons">&#xE5C8;</i><a href="">En savoir plus</a></p>
-                    <p><i class="material-icons">&#xE5C8;</i><a href="">Lees meer</a></p>
+                    <p><i class="material-icons">&#xE5C8;</i><a href="<?php echo url('en/about');?>">Read more</a></p>
+                    <p><i class="material-icons">&#xE5C8;</i><a href="<?php echo url('fr/about');?>">En savoir plus</a></p>
+                    <p><i class="material-icons">&#xE5C8;</i><a href="<?php echo url('nl/about');?>">Lees meer</a></p>
                 </div>
               </div>
             </div>
