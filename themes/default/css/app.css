@@ -6595,13 +6595,13 @@ header {
 .search {
   color: white;
   background: rgba(0, 89, 96, 0.9);
-  padding: 4rem 0 3rem 0;
+  padding: 4rem 0 4rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 767px) {
   .search {
-    padding: 3rem 0 2rem 0;
+    padding: 3rem 0 3rem 0;
   }
 }
 
@@ -6647,7 +6647,7 @@ header {
 }
 
 .search .filter {
-  padding: 1rem 0;
+  padding: 0.3rem 0 0 0;
   margin: 0;
   color: rgba(255, 255, 255, 0.8);
   font-family: "Raleway", sans-serif;
