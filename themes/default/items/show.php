@@ -57,7 +57,7 @@
             </div>
             <div class="col-sm-9 col-xs-12 page">
           <?php else:?>
-            <div class="col-sm-12 col-xs-12 page">
+            <div class="offset-md-1 col-sm-7 col-xs-12 page">
           <?php endif; ?>
           <?php if ($type != ''): ?>
             <h3 class="type-title"><?php echo $type;?></h3>
@@ -121,14 +121,6 @@
                 <?php endif;?>
               </div>
 
-              <!-- The following prints a list of all tags associated with the item -->
-              <?php if (metadata('item', 'has tags')): ?>
-              <div id="item-tags" class="element">
-                  <h3><?php echo __('Tags'); ?></h3>
-                  <div class="element-text"><?php echo tag_string('item'); ?></div>
-              </div>
-              <?php endif;?>
-
               <!-- The following prints a citation for this item. -->
               <!--<div id="item-citation" class="element">
                   <h3><?php echo __('Citation'); ?></h3>
@@ -139,12 +131,21 @@
               <p class="description"><?php echo metadata('item', array('Dublin Core', 'Description')); ?></p>
           <?php endif; ?>
           </div>
+          <div class="col-md-3">
+            <!-- The following prints a list of all tags associated with the item -->
+            <?php if (metadata('item', 'has tags')): ?>
+            <div id="item-tags" class="element">
+                <h3><?php echo __('Tags'); ?></h3>
+                <div class="element-text"><?php echo tag_string('item'); ?></div>
+            </div>
+            <?php endif;?>
             <!--<nav>
             <ul class="item-pagination navigation">
                 <li id="previous-item" class="previous"><?php echo link_to_previous_item_show("&#8249; Previous"); ?></li>
                 <li id="next-item" class="next"><?php echo link_to_next_item_show('Next &#8250;'); ?></li>
             </ul>
           </nav>-->
+          </div>
         </div>
     </div>
 </section>
