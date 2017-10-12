@@ -7008,14 +7008,19 @@ section.news .news-item:last-of-type {
 .item-section {
   z-index: -3;
   padding-top: 0;
-  background: rgba(0, 89, 96, 0.7);
+  background: rgba(0, 89, 96, 0.8);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .item-section .image-row {
   overflow: hidden;
   padding: 1rem 1rem;
-  background: rgba(51, 51, 51, 0.05);
+  background: rgba(0, 89, 96, 0.3);
+}
+
+.item-section .image-row iframe {
+  width: 100%;
+  min-height: 500px;
 }
 
 .item-section .image-row img {
@@ -7062,6 +7067,12 @@ section.news .news-item:last-of-type {
   font-size: 1.5rem;
   font-family: "Raleway", sans-serif;
   text-transform: lowercase;
+}
+
+.metadata-section .description {
+  max-width: 700px;
+  padding: 2rem;
+  background: #f6f6f6;
 }
 
 .metadata-section .element-set {

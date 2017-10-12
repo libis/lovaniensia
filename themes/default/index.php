@@ -59,25 +59,25 @@
                       <?php endif;?>
                       <div class="card-block">
                         <?php if($text = metadata($item, array('Dublin Core','Subject'))):?>
-                          <div id="collection" class="element">
+                          <div class="element">
                               <h3><?php echo __('Subject');?></h3>
                               <div class="element-text"><p><?php echo $text;?></p></div>
                           </div>
                         <?php endif;?>
                         <?php if($text = metadata($item, array('Dublin Core','Creator'))):?>
-                          <div id="collection" class="element">
+                          <div class="element">
                               <h3><?php echo __('Creator');?></h3>
                               <div class="element-text"><p><?php echo $text;?></p></div>
                           </div>
                         <?php endif;?>
                         <?php if($text = metadata($item, array('Dublin Core','Date'))):?>
-                          <div id="collection" class="element">
+                          <div class="element">
                               <h3><?php echo __('Date');?></h3>
                               <div class="element-text"><p><?php echo $text;?></p></div>
                           </div>
                         <?php endif;?>
                         <?php if($text = metadata($item, array('Dublin Core','Publisher'))):?>
-                          <div id="collection" class="element">
+                          <div class="element">
                               <h3><?php echo __('Publisher');?></h3>
                               <div class="element-text"><p><?php echo $text;?></p></div>
                           </div>

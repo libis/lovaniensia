@@ -19,14 +19,20 @@
 </div>
 <?php if (metadata('item', 'has files') && $type != 'News'): ?>
   <section class="item-section general-section">
-      <div class="container-fluid">
-          <div class="row image-row">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="image-row">
+            <iframe src="https://dial.uclouvain.be/client/fr/?d=0#get&url=https://dial.uclouvain.be/downloader/downloader.php?pid=digitization:635&datastream=PDF_01"></iframe>
             <!-- The following returns all of the files associated with an item. -->
-            <div id="itemfiles" class="element">
+            <!--<div id="itemfiles" class="element">
                 <div class="element-text"><?php echo item_image_gallery(array('linkWrapper' => array('wrapper' => null,'class' => 'col-sm-2 col-xs-12 image')),'thumbnail'); ?></div>
-            </div>
+            </div>-->
+            <!--<iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=IE7887696"></iframe>-->
           </div>
+        </div>
       </div>
+    </div>
   </section>
 <?php endif; ?>
 <section class="metadata-section general-section">
@@ -43,53 +49,102 @@
           </div>
         <?php endif; ?>
         <div class="row content">
-            <?php if (metadata('item', 'has files') && $type == 'News'): ?>
-              <div class="col-sm-3 col-xs-12 page">
-                <div id="itemfiles" class="element">
-                    <div class="element-text"><?php echo item_image_gallery(array('linkWrapper' => array('wrapper' => null,'class' => 'col-sm-2 col-xs-12 image')),'thumbnail'); ?></div>
-                </div>
+          <?php if (metadata('item', 'has files') && $type == 'News'): ?>
+            <div class="col-sm-3 col-xs-12 page">
+              <div id="itemfiles" class="element">
+                  <div class="element-text"><?php echo item_image_gallery(array('linkWrapper' => array('wrapper' => null,'class' => 'col-sm-2 col-xs-12 image')),'thumbnail'); ?></div>
               </div>
-              <div class="col-sm-9 col-xs-12 page">
-            <?php else:?>
-              <div class="col-sm-12 col-xs-12 page">
-            <?php endif; ?>
-                    <?php if ($type != ''): ?>
-                      <h3 class="type-title"><?php echo $type;?></h3>
-                    <?php endif; ?>
-                    <h1 class="section-title projecten-title"><span><?php echo metadata('item', array('Dublin Core', 'Title')); ?></span></h1>
+            </div>
+            <div class="col-sm-9 col-xs-12 page">
+          <?php else:?>
+            <div class="col-sm-12 col-xs-12 page">
+          <?php endif; ?>
+          <?php if ($type != ''): ?>
+            <h3 class="type-title"><?php echo $type;?></h3>
+          <?php endif; ?>
+          <h1 class="section-title projecten-title"><span><?php echo metadata('item', array('Dublin Core', 'Title')); ?></span></h1>
 
-                    <?php if ($type != 'News'): ?>
-                        <!-- If the item belongs to a collection, the following creates a link to that collection. -->
-                        <?php if (metadata('item', 'Collection Name')): ?>
-                          <h3 id="collection"><?php echo __('Collection'); ?>: <?php echo link_to_collection_for_item(); ?></h3>
-                        <?php endif; ?>
+          <?php if ($type != 'News'): ?>
+              <!-- If the item belongs to a collection, the following creates a link to that collection. -->
+              <?php if (metadata('item', 'Collection Name')): ?>
+                <h3 id="collection"><?php echo __('Collection'); ?>: <?php echo link_to_collection_for_item(); ?></h3>
+              <?php endif; ?>
+              <?php if($text = metadata($item, array('Dublin Core','Description'))):?>
+                  <div class="description element">
+                    <div class="element-text">
+                      <div class="element-text"><p><?php echo $text;?></p></div>
+                    </div>
+                  </div>
+              <?php endif; ?>
+              <div class="element-set">
+                <?php if($text = metadata('item', array('Dublin Core','Subject'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Subject');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+                <?php if($text = metadata('item', array('Dublin Core','Creator'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Creator');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+                <?php if($text = metadata('item', array('Dublin Core','Contributor'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Contributor');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+                <?php if($text = metadata('item', array('Dublin Core','Spatial Coverage'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Place of printing');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+                <?php if($text = metadata('item', array('Dublin Core','Date'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Date');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+                <?php if($text = metadata('item', array('Dublin Core','Language'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Language');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+                <?php if($text = metadata('item', array('Dublin Core','Publisher'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Publisher');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+              </div>
 
-                        <?php echo all_element_texts('item'); ?>
+              <!-- The following prints a list of all tags associated with the item -->
+              <?php if (metadata('item', 'has tags')): ?>
+              <div id="item-tags" class="element">
+                  <h3><?php echo __('Tags'); ?></h3>
+                  <div class="element-text"><?php echo tag_string('item'); ?></div>
+              </div>
+              <?php endif;?>
 
-                        <!-- The following prints a list of all tags associated with the item -->
-                        <?php if (metadata('item', 'has tags')): ?>
-                        <div id="item-tags" class="element">
-                            <h3><?php echo __('Tags'); ?></h3>
-                            <div class="element-text"><?php echo tag_string('item'); ?></div>
-                        </div>
-                        <?php endif;?>
-
-                        <!-- The following prints a citation for this item. -->
-                        <!--<div id="item-citation" class="element">
-                            <h3><?php echo __('Citation'); ?></h3>
-                            <div class="element-text"><?php echo metadata('item', 'citation', array('no_escape' => true)); ?></div>
-                        </div>-->
-                    <?php else:?>
-                          <p class="date"><?php echo metadata('item', array('Dublin Core', 'Date')); ?></p>
-                          <p class="description"><?php echo metadata('item', array('Dublin Core', 'Description')); ?></p>
-                    <?php endif; ?>
-                </div>
-                <nav>
-                <ul class="item-pagination navigation">
-                    <li id="previous-item" class="previous"><?php echo link_to_previous_item_show("&#8249; Previous"); ?></li>
-                    <li id="next-item" class="next"><?php echo link_to_next_item_show('Next &#8250;'); ?></li>
-                </ul>
-                </nav>
+              <!-- The following prints a citation for this item. -->
+              <!--<div id="item-citation" class="element">
+                  <h3><?php echo __('Citation'); ?></h3>
+                  <div class="element-text"><?php echo metadata('item', 'citation', array('no_escape' => true)); ?></div>
+              </div>-->
+          <?php else:?>
+              <p class="date"><?php echo metadata('item', array('Dublin Core', 'Date')); ?></p>
+              <p class="description"><?php echo metadata('item', array('Dublin Core', 'Description')); ?></p>
+          <?php endif; ?>
+          </div>
+            <!--<nav>
+            <ul class="item-pagination navigation">
+                <li id="previous-item" class="previous"><?php echo link_to_previous_item_show("&#8249; Previous"); ?></li>
+                <li id="next-item" class="next"><?php echo link_to_next_item_show('Next &#8250;'); ?></li>
+            </ul>
+          </nav>-->
         </div>
     </div>
 </section>
