@@ -6490,7 +6490,7 @@ header {
 }
 
 .modal-content .modal-body {
-  padding: 2rem 2rem;
+  padding: 0rem 2rem 2rem 2rem;
 }
 
 @media (max-width: 767px) {
@@ -6782,6 +6782,9 @@ header {
   font-family: "Raleway", sans-serif;
   font-weight: 100;
   text-transform: uppercase;
+}
+
+.home .features .card h1 a {
   color: white;
 }
 
@@ -7560,15 +7563,21 @@ footer p {
 }
 
 footer .logo-row {
-  text-align: center;
+  width: 310px;
+  margin-bottom: 2rem;
+  overflow: auto;
 }
 
 footer .logo-row img {
-  max-width: 200px;
-  max-height: 130px;
-  margin-right: 20px;
-  margin-bottom: 1rem;
+  height: 55px;
+  margin-bottom: 10px;
   vertical-align: top;
+  float: left;
+}
+
+footer .logo-row .ucl {
+  height: 120px;
+  margin-right: 20px;
 }
 
 footer ul {

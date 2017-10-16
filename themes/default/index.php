@@ -48,7 +48,7 @@
               <div class="features col-md-7 col-xs-12">
                   <div class="card card-text">
                       <h1 class="section-title projecten-title">
-                        <span><?php echo metadata($item, array('Dublin Core','Title'));?></span>
+                        <span><a href="<?php echo record_url($item);?>"><?php echo metadata($item, array('Dublin Core','Title'));?></a></span>
                       </h1>
                       <?php if($text = metadata($item, array('Dublin Core','Description'))):?>
                         <div class="description element">
@@ -58,21 +58,15 @@
                         </div>
                       <?php endif;?>
                       <div class="card-block">
-                        <?php if($text = metadata($item, array('Dublin Core','Subject'))):?>
-                          <div class="element">
-                              <h3><?php echo __('Subject');?></h3>
-                              <div class="element-text"><p><?php echo $text;?></p></div>
-                          </div>
-                        <?php endif;?>
                         <?php if($text = metadata($item, array('Dublin Core','Creator'))):?>
                           <div class="element">
                               <h3><?php echo __('Creator');?></h3>
                               <div class="element-text"><p><?php echo $text;?></p></div>
                           </div>
                         <?php endif;?>
-                        <?php if($text = metadata($item, array('Dublin Core','Date'))):?>
+                        <?php if($text = metadata($item, array('Dublin Core','Contributor'))):?>
                           <div class="element">
-                              <h3><?php echo __('Date');?></h3>
+                              <h3><?php echo __('Contributor');?></h3>
                               <div class="element-text"><p><?php echo $text;?></p></div>
                           </div>
                         <?php endif;?>
@@ -82,9 +76,15 @@
                               <div class="element-text"><p><?php echo $text;?></p></div>
                           </div>
                         <?php endif;?>
+                        <?php if($text = metadata($item, array('Dublin Core','Date'))):?>
+                          <div class="element">
+                              <h3><?php echo __('Date');?></h3>
+                              <div class="element-text"><p><?php echo $text;?></p></div>
+                          </div>
+                        <?php endif;?>
                       </div>
                       <div class="card-footer">
-                          <a href="">View item<i class="material-icons">&#xE315;</i></a>
+                          <a href="<?php echo record_url($item);?>">View item<i class="material-icons">&#xE315;</i></a>
                       </div>
                   </div>
               </div>
