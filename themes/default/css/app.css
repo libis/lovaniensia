@@ -7286,7 +7286,7 @@ section.news .news-item:last-of-type {
   margin: 2rem 0 0 0 !important;
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
-  background: #005960;
+  border-left: 1px solid #005960;
   padding: 2rem;
 }
 
@@ -7300,14 +7300,13 @@ section.news .news-item:last-of-type {
 
 .exhibit-show-section .simple-nav li a,
 .simple-page-section .simple-nav li a {
-  color: white;
   padding: 3px;
 }
 
 .exhibit-show-section .simple-nav li a:hover,
 .simple-page-section .simple-nav li a:hover {
   text-decoration: none;
-  border-bottom: 2px solid #005960;
+  border-bottom: 1px solid #005960;
 }
 
 @media (max-width: 767px) {
