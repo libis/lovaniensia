@@ -128,6 +128,9 @@ class Importer{
             $element == null;
         endforeach;
 
+        //save item (again) to force reindexing if solr is installed
+        $item->save();
+
         return true;
     }
 
