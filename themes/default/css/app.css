@@ -6873,7 +6873,7 @@ header {
 }
 
 .home .features .card .card-footer a i {
-  vertical-align: middle;
+  vertical-align: text-bottom;
   font-size: 1.2rem;
 }
 
@@ -7045,9 +7045,9 @@ section.news .news-item:last-of-type {
 }
 
 .metadata-section h1 {
-  font-weight: 100;
+  font-weight: 500;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-family: "Raleway", sans-serif;
 }
 
@@ -7073,7 +7073,6 @@ section.news .news-item:last-of-type {
 }
 
 .metadata-section .description {
-  max-width: 700px;
   padding: 2rem;
   background: #f6f6f6;
 }
@@ -7286,7 +7285,7 @@ section.news .news-item:last-of-type {
   margin: 2rem 0 0 0 !important;
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
-  border-left: 1px solid #005960;
+  border-left: 1px solid #eee;
   padding: 2rem;
 }
 
@@ -7306,7 +7305,7 @@ section.news .news-item:last-of-type {
 .exhibit-show-section .simple-nav li a:hover,
 .simple-page-section .simple-nav li a:hover {
   text-decoration: none;
-  border-bottom: 1px solid #005960;
+  border-bottom: 1px solid rgba(0, 89, 96, 0.3);
 }
 
 @media (max-width: 767px) {

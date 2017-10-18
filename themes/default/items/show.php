@@ -57,7 +57,7 @@
             </div>
             <div class="col-sm-9 col-xs-12 page">
           <?php else:?>
-            <div class="offset-md-1 col-sm-7 col-xs-12 page">
+            <div class="offset-md-1 col-md-9 col-xs-12 page">
           <?php endif; ?>
           <?php if ($type != ''): ?>
             <h3 class="type-title"><?php echo $type;?></h3>
@@ -120,12 +120,6 @@
                   </div>
                 <?php endif;?>
               </div>
-
-              <!-- The following prints a citation for this item. -->
-              <!--<div id="item-citation" class="element">
-                  <h3><?php echo __('Citation'); ?></h3>
-                  <div class="element-text"><?php echo metadata('item', 'citation', array('no_escape' => true)); ?></div>
-              </div>-->
           <?php else:?>
               <p class="date"><?php echo metadata('item', array('Dublin Core', 'Date')); ?></p>
               <p class="description"><?php echo metadata('item', array('Dublin Core', 'Description')); ?></p>
@@ -139,12 +133,6 @@
                 <div class="element-text"><?php echo tag_string('item'); ?></div>
             </div>
             <?php endif;?>
-            <!--<nav>
-            <ul class="item-pagination navigation">
-                <li id="previous-item" class="previous"><?php echo link_to_previous_item_show("&#8249; Previous"); ?></li>
-                <li id="next-item" class="next"><?php echo link_to_next_item_show('Next &#8250;'); ?></li>
-            </ul>
-          </nav>-->
           </div>
         </div>
     </div>
