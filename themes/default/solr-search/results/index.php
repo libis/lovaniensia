@@ -57,7 +57,7 @@
       <div id="solr-facets" class="col-md-3 col-xs-12">
           <!-- Facets. -->
           <h2><?php echo __('Limit your search'); ?></h2>
-
+            <?php $i=0;?>
             <?php foreach ($results->facet_counts->facet_fields as $name => $facets) : ?>
 
             <!-- Does the facet have any hits? -->
@@ -65,27 +65,27 @@
 
                 <!-- Facet label. -->
                 <?php $label = SolrSearch_Helpers_Facet::keyToLabel($name); ?>
-                <strong><?php echo $label; ?></strong>
+                <div class="facet">
+                    <a class="facet-name" data-toggle="collapse" href="#list<?php echo $i;?>" aria-expanded="false" aria-controls="#list<?php echo $i;?>"><?php echo $label; ?></a>
+                    <ul class="collapse" id="list<?php echo $i;?>">
+                        <!-- Facets. -->
+                        <?php foreach ($facets as $value => $count) : ?>
+                          <li class="<?php echo $value; ?>">
+                            <!-- Facet URL. -->
+                            <?php $url = SolrSearch_Helpers_Facet::addFacet($name, $value); ?>
 
-              <ul>
-              <!-- Facets. -->
-                <?php foreach ($facets as $value => $count) : ?>
-                  <li class="<?php echo $value; ?>">
+                            <!-- Facet link. -->
+                            <a href="<?php echo $url; ?>" class="facet-value">
+                                <?php echo $value; ?>
+                            </a>
 
-                    <!-- Facet URL. -->
-                    <?php $url = SolrSearch_Helpers_Facet::addFacet($name, $value); ?>
-
-                    <!-- Facet link. -->
-                    <a href="<?php echo $url; ?>" class="facet-value">
-                        <?php echo $value; ?>
-                    </a>
-
-                    <!-- Facet count. -->
-                    (<span class="facet-count"><?php echo $count; ?></span>)
-
-                  </li>
-                <?php endforeach; ?>
-              </ul>
+                            <!-- Facet count. -->
+                            (<span class="facet-count"><?php echo $count; ?></span>)
+                          </li>
+                          <?php $i++;?>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
 
             <?php endif; ?>
 

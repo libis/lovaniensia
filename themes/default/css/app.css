@@ -7476,6 +7476,25 @@ section.search-solr h1 {
   color: rgba(51, 51, 51, 0.8);
 }
 
+.solr-section-results #solr-facets .facet .facet-name::before {
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: "material icons";
+  vertical-align: middle;
+}
+
+.solr-section-results #solr-facets .facet .facet-name[aria-expanded="true"]::before {
+  content: 'expand_more';
+}
+
+.solr-section-results #solr-facets .facet .facet-name[aria-expanded="false"]::before {
+  content: 'expand_less';
+}
+
+.solr-section-results #solr-facets .facet a:focus {
+  text-decoration: none !important;
+}
+
 .solr-section-results #solr-facets ul {
   margin: 5px 0 15px 0;
   list-style: none;
