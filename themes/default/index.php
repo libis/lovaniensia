@@ -5,7 +5,7 @@
             <div class="intro col-md-12">
               <div class='row'>
                 <div class="intro-content col-xs-12 offset-md-1 col-md-7 col-lg-6">
-                    <?php echo libis_get_simple_page_content("homepage-info");?>
+                    <?php echo libis_get_simple_page_content("Info");?>
                 </div>
                 <div class="more col-xs-12 col-md-4 col-xl-4">
                     <p><i class="material-icons">&#xE5C8;</i><a href="<?php echo url('en/about');?>">Read more</a></p>
