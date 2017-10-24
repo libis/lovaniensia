@@ -85,7 +85,7 @@
                             <span class="text-muted"> <?php echo public_nav_main(array('role' => 'navigation')); ?></span>
                         </div>
                         <div class="col-md-4">
-                            <span class="text-muted"> <?php echo public_nav_main(array('role' => 'navigation')); ?></span>
+                            
                         </div>
                     </div>
                   </div>
