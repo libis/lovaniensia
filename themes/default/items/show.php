@@ -59,9 +59,9 @@
           <?php else:?>
             <div class="offset-md-1 col-md-9 col-xs-12 page">
           <?php endif; ?>
-          <?php if ($type != ''): ?>
+          <!--<?php if ($type != ''): ?>
             <h3 class="type-title"><?php echo $type;?></h3>
-          <?php endif; ?>
+          <?php endif; ?>-->
           <h1 class="section-title projecten-title"><span><?php echo metadata('item', array('Dublin Core', 'Title')); ?></span></h1>
 
           <?php if ($type != 'News'): ?>
