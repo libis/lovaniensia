@@ -6,7 +6,7 @@
                   <p><?php echo $copyright; ?></p>
               <?php endif; ?>
               <div class="row">
-                  <div class="col-sm-7 col-lg-5">
+                  <div class="col-sm-7 col-lg-6">
                       <div class="logo-row">
                           <a href="https://uclouvain.be"><img class="ucl" src="<?php echo img("ucl.jpg");?>"></a>
                           <a href="https://kuleuven.be"><img src="<?php echo img("KULEUVEN.png");?>"></a>
@@ -21,7 +21,7 @@
                           .....
                       </p>
                   </div>
-                  <div class="col-md-4 col-xs-12">
+                  <div class="col-md-3 col-xs-12">
                       <ul>
                           <li><a href="">Menu item 1</a></li>
                           <li><a href="">Menu item 1</a></li>

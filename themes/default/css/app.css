@@ -7597,7 +7597,6 @@ footer p {
 }
 
 footer .logo-row {
-  width: 310px;
   margin-bottom: 2rem;
   overflow: auto;
 }
@@ -7605,6 +7604,7 @@ footer .logo-row {
 footer .logo-row img {
   height: 55px;
   margin-bottom: 10px;
+  margin-right: 20px;
   vertical-align: top;
   float: left;
 }
