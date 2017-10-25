@@ -49,23 +49,22 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <button class="navbar-toggler pull-xs-right" type="button" data-toggle="modal" data-target="#modalNav" aria-controls="exCollapsingNavbar2">
+                    <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="modal" data-target="#modalNav" aria-controls="exCollapsingNavbar2">
                       &#9776;
                     </button>
                     <a class="navbar-brand" href="<?php echo WEB_ROOT;?>">Lovaniensia</a>
+                    <div class="pull-xs-right hidden-sm-down">
+                      <?php echo public_nav_main(array('role' => 'navigation')) -> setUlClass('nav navbar-nav'); ?>
+                    </div>
                     <form class="form-inline pull-xs-right">
                       <input class="form-control" type="text" placeholder="Search">
                       <button class="btn" type="submit"><i class="material-icons">search</i></button>
                     </form>
                   </div>
                 </div>
-                <!--<div class="row">
-                  <div class="col-md-12">
-                    <div class="collapse" id="exCollapsingNavbar2">
-                    <?php echo public_nav_main(array('role' => 'navigation')) -> setUlClass('nav navbar-nav'); ?>
-                    </div>
-                  </div>
-                </div>-->
+                <div class="row">
+
+                </div>
               </div>
             </nav>
             <?php fire_plugin_hook('public_header', array('view' => $this)); ?>
@@ -85,7 +84,7 @@
                             <span class="text-muted"> <?php echo public_nav_main(array('role' => 'navigation')); ?></span>
                         </div>
                         <div class="col-md-4">
-                            
+
                         </div>
                     </div>
                   </div>

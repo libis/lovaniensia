@@ -6362,13 +6362,17 @@ header {
 
 .public-nav .navbar-nav li {
   float: left;
+  line-height: 3.4;
+  background: rgba(0, 89, 96, 0.7);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .public-nav .navbar-nav li a {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: normal;
-  margin: 0 25px 0 0;
-  font-size: 0.9rem;
+  margin: 0 15px;
+  font-size: 0.8rem;
+  font-family: "Raleway", sans-serif;
   text-transform: uppercase;
 }
 
@@ -6382,6 +6386,14 @@ header {
   .public-nav .navbar-nav li {
     float: none;
   }
+}
+
+.public-nav .navbar-nav li:hover {
+  background: #005960;
+}
+
+.public-nav .navbar-nav li:last-of-type {
+  border: none;
 }
 
 .public-nav .form-inline {
