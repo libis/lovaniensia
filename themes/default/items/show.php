@@ -23,12 +23,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="image-row">
-            <iframe src="https://dial.uclouvain.be/client/fr/?d=0#get&url=https://dial.uclouvain.be/downloader/downloader.php?pid=digitization:635&datastream=PDF_01"></iframe>
-            <!-- The following returns all of the files associated with an item. -->
-            <!--<div id="itemfiles" class="element">
-                <div class="element-text"><?php echo item_image_gallery(array('linkWrapper' => array('wrapper' => null,'class' => 'col-sm-2 col-xs-12 image')),'thumbnail'); ?></div>
-            </div>-->
-            <!--<iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=IE7887696"></iframe>-->
+            <iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=IE7887696"></iframe>
           </div>
         </div>
       </div>
