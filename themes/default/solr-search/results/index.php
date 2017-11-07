@@ -57,17 +57,23 @@
       <div id="solr-facets" class="col-md-3 col-xs-12">
           <!-- Facets. -->
           <h2><?php echo __('Limit your search'); ?></h2>
-            <?php $i=0;?>
-            <?php foreach ($results->facet_counts->facet_fields as $name => $facets) : ?>
+          <?php $i=0;?>
+          <?php foreach ($results->facet_counts->facet_fields as $name => $facets) : ?>
 
             <!-- Does the facet have any hits? -->
             <?php if (count(get_object_vars($facets))) : ?>
-
                 <!-- Facet label. -->
                 <?php $label = SolrSearch_Helpers_Facet::keyToLabel($name); ?>
                 <div class="facet">
                     <a class="facet-name" data-toggle="collapse" href="#list<?php echo $i;?>" aria-expanded="false" aria-controls="#list<?php echo $i;?>"><?php echo $label; ?></a>
                     <ul class="collapse" id="list<?php echo $i;?>">
+                        <?php if($label == 'Date'):?>
+                        <?php
+                            //extra: sort Date alphabetically
+                            $facets = (get_object_vars($facets));
+                            ksort($facets);
+                        ?>
+                        <?php endif;?>
                         <!-- Facets. -->
                         <?php foreach ($facets as $value => $count) : ?>
                           <li class="<?php echo $value; ?>">
@@ -86,12 +92,9 @@
                         <?php endforeach; ?>
                     </ul>
                 </div>
-
             <?php endif; ?>
-
-            <?php endforeach; ?>
-
-          </div>
+          <?php endforeach; ?>
+      </div>
           <div class="solr-results col-md-9 col-xs-12">
             <?php echo pagination_links(); ?>
             <!-- Results. -->
