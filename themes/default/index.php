@@ -22,14 +22,14 @@
         <div class="row">
             <div class="features col-md-10 offset-md-1 col-xs-12">
               <form id="solr-search-form" action="<?php echo url("solr-search");?>">
-              <div class="input-group">
-                <input type="text" class="form-control" name="q" placeholder="Search the Collection" aria-label="Search for...">
-                <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="submit"><i class="material-icons"></i></button>
-                </span>
-              </div>
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search the Collection" aria-label="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit"><i class="material-icons"></i></button>
+                  </span>
+                </div>
               </form>
-              <p class="filter">Explore by: <a href="">collection</a>, <a href="">contribution</a> or <a href="">place of printing</a></p>
+              <p class="filter">Explore by: <a href="<?php echo url("professors");?>">professors</a></p>
             </div>
         </div>
     </div>
