@@ -75,38 +75,52 @@ class Transformer{
         */
 
         foreach($fields as $field):
-
+            //mms id & LIMO link
             if(isset($field["001"])):
                 $result["object_id"][]=$field["001"];
                 $result["LIMO"][]="https://services.libis.be/query?institution=KUL&view=KULeuven&query=any:".$field["001"];
             endif;
 
+            //date (facet) & language (iso)
+            if(isset($field["008"])):
+                $result["date"][]= substring($field["008"],8,4);
+                $result["language"][]= substring($field["008"],36,3);
+            endif;
+
+            //title
             if(isset($field["245"])):
-                $result["title"][]=$field["245"]['subfields']['a'];
-            endif;
+                $title = $field["245"]['subfields']['a'];
 
-            if(isset($field["246"])):
-                $result["other titles"][]=$field["246"]['subfields']['a'];
-            endif;
-
-            if(isset($field["935"])):
-                $result["digi"][]=$field["935"]['subfields']['a'];
-            endif;
-
-            if(isset($field["830"])):
-                $result["content"][]=$field["830"]['subfields']['a'];
-            endif;
-
-            if(isset($field["546"])):
-                $result["language"][]=$field["546"]['subfields']['a'];
-            endif;
-
-            if(isset($field["653"])):
-                if($field["653"]["ind1"]==' '&&$field["653"]["ind2"]=='6'):
-                    $result["type"][]=$field["653"]['subfields']['a'];
+                if(isset($field["245"]['subfields']['b'])):
+                  $title .= $field["245"]['subfields']['b'];
                 endif;
+                if(isset($field["245"]['subfields']['c'])):
+                  $title .= $field["245"]['subfields']['c'];
+                endif;
+                $result["title"][] = $title;
             endif;
 
+            //alternative title
+            if(isset($field["246"])):
+                $alttitle = $field["246"]['subfields']['a'];
+
+                if(isset($field["246"]['subfields']['b'])):
+                  $alttitle .= $field["246"]['subfields']['b'];
+                endif;
+                $result["alternative title"][]= $alttitle;
+            endif;
+
+            //place
+            if(isset($field["710"])):
+                $result["place"][]=$field["710"]['subfields']['c'];
+            endif;
+
+            //publisher
+            if(isset($field["710"])):
+                $result["publisher"][]=$field["710"]['subfields']['a'];
+            endif;
+
+            //images
             if(isset($field["representation"])):
               $result["pid"][]= $field["representation"]["linking_parameter_1"];
             elseif(isset($field["856"]) && !$representation):
@@ -124,48 +138,15 @@ class Transformer{
                 endif;
             endif;
 
-            if(isset($field["260"])):
-                if($field["260"]["ind1"]==' '&&$field["260"]["ind2"]==' '):
-                    $data=$field["260"]['subfields']['c'];
-                    $result["date"][] = str_replace('.', '', $data);
-                endif;
-            endif;
-
+            //date (period for display)
             if(isset($field["264"])):
                 if($field["264"]["ind1"]==' '&&$field["264"]["ind2"]=='1'):
                     $data=$field["264"]['subfields']['c'];
-                    $result["date"][] = str_replace('.', '', $data);
-                endif;
-                if(isset($field["264"]['subfields']['a'])):
-                    $result["spatial"][] = $field["264"]['subfields']['a'];
-                endif;
-                if(isset($field["264"]['subfields']['b'])):
-                    $result["publisher"][] = $field["264"]['subfields']['b'];
+                    $result["period"][] = str_replace('.', '', $data);
                 endif;
             endif;
 
-            if (isset($field["952"])):
-                if($field["952"]["ind1"]==' '&&$field["952"]["ind2"]==' '):
-	                 $data = $field["952"]['subfields']['d'];
-	                 if ($field["952"]['subfields']['f'] != null) {
-	                   $data .= "; ".$field["952"]['subfields']['f'];
-		               }
-		               $result["provenance"][]=$data;
-                endif;
-            endif;
-
-            if (isset($field["505"])):
-                $data = "";
-      			    if (isset($field["505"]['subfields']['a'])) {
-      				    $data = $field["505"]['subfields']['a'];
-      			    }
-
-                if (isset($field["505"]['subfields']['g'])) {
-      				    $data .= " (".$field["505"]['subfields']['g'].")";
-      			    }
-      			    $result["TableOfContents"][]=$data;
-            endif;
-
+            //description
             if (isset($field["300"])):
                 if($field["300"]["ind1"]==' '&&$field["300"]["ind2"]==' '):
     			        $data = $field["300"]['subfields']['a'];
@@ -184,116 +165,49 @@ class Transformer{
                 endif;
             endif;
 
-            if (isset($field["950"])):
-                if($field["950"]["ind1"]==' '&&$field["950"]["ind2"]==' '):
-  		              $data = "";
-      			        if (isset($field["950"]['subfields']['a'])) {
-      				        $data = $field["950"]['subfields']['a'];
-      			        }
-
-      			        if (isset($field["950"]['subfields']['b'])) {
-      				        $data .= " ".$field["950"]['subfields']['b'];
-      			        }
-      			        if (isset($field["950"]['subfields']['c'])) {
-      				        $data .= " (" . $field["950"]['subfields']['c'] . ")";
-      			        }
-      			        $result["Illustrations"][]=$data;
-                endif;
-            endif;
-
-            if(isset($field["500"])):
-                if($field["500"]["ind1"]==' '&&$field["500"]["ind2"]==' '):
-                    $result["Notes"][]=$field["500"]['subfields']['a'];
-                endif;
-            endif;
-
-            /*if(isset($field["544"])){
-                $result["source"][]=$field["544"]['subfields']['a'];
-                if ($field["544"]['subfields']['b'] != null) {
-        		       $result["IdentifierCallnumber"][] = $field["544"]['subfields']['b'];
-                }
-            }*/
+            //source and identifiers
             if(isset($field["852"])){
                 if (isset($field["852"]['subfields']['c'])) {
 			             $result['source'][] =$field["852"]['subfields']['c'];
                 }
-    				    if ($field["852"]['subfields']['h'] != null) {
-    					    $result["IdentifierCallnumber"][] = $field["852"]['subfields']['h'];
+    				    if (isset($field["852"]['subfields']['i'])) {
+    					    $result["identifier"][] = $field["852"]['subfields']['i'];
+    				    }
+                if (isset($field["852"]['subfields']['k'])) {
+    					    $result["identifier"][] = $field["852"]['subfields']['k'];
+    				    }
+                if (isset($field["852"]['subfields']['h'])) {
+    					    $result["identifier"][] = $field["852"]['subfields']['h'];
+    				    }
+                if (isset($field["852"]['subfields']['l'])) {
+    					    $result["identifier"][] = $field["852"]['subfields']['l'];
+    				    }
+                if (isset($field["852"]['subfields']['m'])) {
+    					    $result["identifier"][] = $field["852"]['subfields']['m'];
     				    }
             }
 
+            //creator & contributor
             if (isset($field["700"])):
-    			    if($field["700"]['subfields']['4']=="stu" || $field["700"]['subfields']['4']=="pfs"
-    			    || $field["700"]['subfields']['4']=="aow" || $field["700"]['subfields']['4']=="aut"
-    			    || $field["700"]['subfields']['4']=="egr" || $field["700"]['subfields']['4']=="etc"
-    			    || $field["700"]['subfields']['4']=="ill" || $field["700"]['subfields']['4']=="oth"
-    			    || $field["700"]['subfields']['4']=="prt") {
-        			    // This construction is to remove duplicated entries. (thanks to the property of hashset, linked, because order matters
-        			    $data="";
+  			       $data="";
 
-        			    if (isset($field["700"]['subfields']['a'])) {
-        				    $data .= $field["700"]['subfields']['a'];
-        			    }
-        			    if (isset($field["700"]['subfields']['b'])) {
-                            $data .= " ".$field["700"]['subfields']['b'];
-        			    }
-        			    if (isset($field["700"]['subfields']['c'])) {
-        				    $data .=" (". $field["700"]['subfields']['c'] .  ")";
-        			    }
-        			    if (isset($field["700"]['subfields']['d'])) {
-        				    $data .=" (". $field["700"]['subfields']['d'] .  ")";
-        			    }
-        			    if (isset($field["700"]['subfields']['q'])) {
-        				    $data .=" (". $field["700"]['subfields']['q'] .  ")";
-        			    }
-        			    if (isset($field["700"]['subfields']['g'] )) {
-        				    $data .=" (". $field["700"]['subfields']['g'] .  ")";
-        			    }
-        			    if (isset($field["700"]['subfields']['3'])) {
-        				    $data .=" (". $field["700"]['subfields']['3'] .  ")";
-        			    }
+      			    if (isset($field["700"]['subfields']['a'])) {
+      				    $data .= $field["700"]['subfields']['a'];
+      			    }
+      			    if (isset($field["700"]['subfields']['b'])) {
+                  $data .= " ".$field["700"]['subfields']['b'];
+      			    }
+      			    if (isset($field["700"]['subfields']['d'])) {
+      				    $data .=" ". $field["700"]['subfields']['d'];
+      			    }
 
-    	            if ($field["700"]['subfields']['4']!="stu" && $field["700"]['subfields']['4']!="pfs") {
-    		            switch ($field["700"]['subfields']['4']) {
-    		                case "aow":
-    			                $data .=" (author of original work)";
-    			                break;
-    		                case "aut":
-    			                $data .=" (author)";
-    			                break;
-    		                case "egr":
-    			                $data .=" (engraver)";
-    			                break;
-    		                case "etc":
-    			                $data .=" (etcher)";
-    			                break;
-    		                case "ill":
-    			                $data .=" (illustrator)";
-    			                break;
-    		                case "oth":
-    			                $data .=" (role not identified)";
-    			                break;
-    		                case "prt":
-    			                $data .=" (printer)";
-    			                break;
-    		                default:
-                                $data='';
-    			                break;
-    		            }
-    	            }
+  	            if ($field["700"]['subfields']['4']=="aut") {
 
-    	            if ($field["700"]['subfields']['4']=="stu") {
+  		            $result["Creator"][]=$data;
 
-    		            $result["Creator"][]=$data;
-
-    	            } else if ($field["700"]['subfields']['4']=="pfs") {
-
-    		            $result["Professor"][]=$data;
-
-    	            } else {
-    		            $result["Contributor"][]=$data;
-    	            }
-                }
+  	            } else {
+  		            $result["Contributor"][]=$data;
+  	            }
             endif;
         endforeach;
 
