@@ -70,13 +70,13 @@
                 <div class="facet">
                     <a class="facet-name" data-toggle="collapse" href="#list<?php echo $i;?>" aria-expanded="false" aria-controls="#list<?php echo $i;?>"><?php echo $label; ?></a>
                     <ul class="collapse" id="list<?php echo $i;?>">
-                        <?php if($label == 'Date'):?>
                         <?php
+                          if($label == 'Date'):
                             //extra: sort Date alphabetically
                             $facets = (get_object_vars($facets));
                             ksort($facets);
+                          endif;
                         ?>
-                        <?php endif;?>
                         <!-- Facets. -->
                         <?php foreach ($facets as $value => $count) : ?>
                           <li class="<?php echo $value; ?>">
@@ -101,11 +101,10 @@
             <?php endif; ?>
           <?php endforeach; ?>
       </div>
-          <div class="solr-results col-md-9 col-xs-12">
-            <?php echo pagination_links(); ?>
-            <!-- Results. -->
-
-            <?php foreach ($results->response->docs as $doc) : ?>
+      <div class="solr-results col-md-9 col-xs-12">
+          <?php echo pagination_links(); ?>
+          <!-- Results. -->
+          <?php foreach ($results->response->docs as $doc) : ?>
 
               <!-- Document. -->
               <div class="row result">
@@ -153,7 +152,6 @@
             <?php echo pagination_links(); ?>
         </div>
     </div>
-
   </div>
 </div>
 <?php echo foot();

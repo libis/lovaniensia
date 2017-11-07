@@ -7203,6 +7203,7 @@ section.news .news-item:last-of-type {
 .exhibit-show-section .page,
 .simple-page-section .page {
   min-height: 600px;
+  margin-bottom: 2rem;
 }
 
 .exhibit-show-section .page .image,

@@ -77,12 +77,7 @@
                   </div>
               <?php endif; ?>
               <div class="element-set">
-                <?php if($text = metadata('item', array('Dublin Core','Subject'))):?>
-                  <div class="element">
-                      <h3><?php echo __('Subject');?></h3>
-                      <div class="element-text"><?php echo $text;?></div>
-                  </div>
-                <?php endif;?>
+                <!-- creators -->
                 <?php if($text = metadata('item', array('Dublin Core','Creator'))):?>
                   <div class="element">
                       <h3><?php echo __('Creator');?></h3>
@@ -95,9 +90,29 @@
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Spatial Coverage'))):?>
+
+                <!-- taal -->
+                <?php if($text = metadata('item', array('Dublin Core','Language'))):?>
                   <div class="element">
-                      <h3><?php echo __('Place of printing');?></h3>
+                      <h3><?php echo __('Language');?></h3>
+                      <div class="element-text"><?php echo locale_get_display_language($text);?></div>
+                  </div>
+                <?php endif;?>
+
+                <!-- impressum -->
+                <?php if($text = metadata('item', array('Dublin Core','Coverage'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Place');?></h3>
+                      <?php if($text == "Brussel" || $text == "Bruxelles"):?>
+                        <div class="element-text">Brussel / Bruxelles</div>
+                      <?php else:?>
+                        <div class="element-text"><?php echo $text;?></div>
+                      <?php endif;?>
+                  </div>
+                <?php endif;?>
+                <?php if($text = metadata('item', array('Dublin Core','Publisher'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Publisher');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
@@ -107,15 +122,26 @@
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Language'))):?>
+
+                <!-- subjects -->
+                <?php if($text = metadata('item', array('Dublin Core','Subject'))):?>
                   <div class="element">
-                      <h3><?php echo __('Language');?></h3>
-                      <div class="element-text"><?php echo locale_get_display_language($text);?></div>
+                      <h3><?php echo __('Subject');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Publisher'))):?>
+
+                <!-- exemplaargegevens -->
+                <?php if($text = metadata('item', array('Dublin Core','Source'))):?>
                   <div class="element">
-                      <h3><?php echo __('Publisher');?></h3>
+                      <h3><?php echo __('Source');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+
+                <?php if($text = metadata('item', array('Dublin Core','Identifier'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Call number');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
@@ -125,15 +151,14 @@
               <p class="description"><?php echo metadata('item', array('Dublin Core', 'Description')); ?></p>
           <?php endif; ?>
           </div>
-          <div class="col-md-3">
-            <!-- The following prints a list of all tags associated with the item -->
+          <!--<div class="col-md-3">
             <?php if (metadata('item', 'has tags')): ?>
             <div id="item-tags" class="element">
                 <h3><?php echo __('Tags'); ?></h3>
                 <div class="element-text"><?php echo tag_string('item'); ?></div>
             </div>
             <?php endif;?>
-          </div>
+          </div>-->
         </div>
     </div>
 </section>
