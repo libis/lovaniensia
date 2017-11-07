@@ -110,7 +110,7 @@
                 <?php if($text = metadata('item', array('Dublin Core','Language'))):?>
                   <div class="element">
                       <h3><?php echo __('Language');?></h3>
-                      <div class="element-text"><?php echo $text;?></div>
+                      <div class="element-text"><?php echo locale_get_display_language($text);?></div>
                   </div>
                 <?php endif;?>
                 <?php if($text = metadata('item', array('Dublin Core','Publisher'))):?>

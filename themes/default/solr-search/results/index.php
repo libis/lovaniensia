@@ -39,8 +39,11 @@
                 <!-- Facet label. -->
                 <?php $label = SolrSearch_Helpers_Facet::keyToLabel($f[0]); ?>
                 <span class="applied-facet-label"><?php echo $label; ?></span> >
-                <span class="applied-facet-value"><?php echo $f[1]; ?></span>
-
+                <?php if($label == 'Language'):?>
+                  <span class="applied-facet-value"><?php echo locale_get_display_language($f[1]); ?></span>
+                <?php else: ?>
+                  <span class="applied-facet-value"><?php echo $f[1]; ?></span>
+                <?php endif ?>
                 <!-- Remove link. -->
                 <?php $url = SolrSearch_Helpers_Facet::removeFacet($f[0], $f[1]); ?>
                 <a href="<?php echo $url; ?>"><i class="material-icons">&#xE14C;</i></a>
@@ -82,6 +85,9 @@
 
                             <!-- Facet link. -->
                             <a href="<?php echo $url; ?>" class="facet-value">
+                                <?php if($label == 'Language'):
+                                  echo locale_get_display_language ($value);
+                                endif ?>
                                 <?php echo $value; ?>
                             </a>
 
@@ -98,6 +104,7 @@
           <div class="solr-results col-md-9 col-xs-12">
             <?php echo pagination_links(); ?>
             <!-- Results. -->
+
             <?php foreach ($results->response->docs as $doc) : ?>
 
               <!-- Document. -->
