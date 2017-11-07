@@ -1,11 +1,16 @@
-digi|Item Type Metadata|DIGI nummer
 object_id|Item Type Metadata|MMS ID
-source|Dublin Core|Source
-IdentifierCallnumber|Item Type Metadata|Plaatskenmerk
+identifier|Item Type Metadata|Plaatskenmerk
+identifier|Dublin Core|identifier
 title|Dublin Core|Title
-Creator|Dublin Core|Creator
+alternative_title|Dublin Core|Alternative Title
+creator|Dublin Core|Creator
+contributor|Dublin Core|Contributor
 date|Dublin Core|Date
-Spatial|Dublin Core|Spatial
+source|Dublin Core|Source
+language|Dublin Core|Language
+description|Dublin Core|Description
+period|Dublin Core|Period
+place|Dublin Core|Coverage
 Publisher|Dublin Core|Publisher
 LIMO|Item Type Metadata|LIMO
 pid|Item Type Metadata|Rosetta ID

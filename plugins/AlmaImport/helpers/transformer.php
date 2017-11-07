@@ -107,7 +107,7 @@ class Transformer{
                 if(isset($field["246"]['subfields']['b'])):
                   $alttitle .= $field["246"]['subfields']['b'];
                 endif;
-                $result["alternative title"][]= $alttitle;
+                $result["alternative_title"][]= $alttitle;
             endif;
 
             //place
@@ -161,7 +161,7 @@ class Transformer{
     				        }
     				        $data .= $field["300"]['subfields']['c'];
     			        }
-    			        $result["Description"][]=$data;
+    			        $result["description"][]=$data;
                 endif;
             endif;
 
