@@ -17,13 +17,18 @@
     </div>
   </div>
 </div>
-<?php if (metadata('item', 'has files') && $type != 'News'): ?>
+<?php if ($mirador = metadata($item, array('Item Type Metadata','Rosseta ID') || $universal = metadata($item, array('Dublin Core','Relation')
+          ): ?>
   <section class="item-section general-section">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
           <div class="image-row">
-            <iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=IE7887696"></iframe>
+            <?php if($text_IE):?>
+              <iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=<?php echo $mirador;?>"></iframe>
+            <?php else: ?>
+              <iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=<?php echo $universal;?>"></iframe>
+            <?php endif;?>  
           </div>
         </div>
       </div>
