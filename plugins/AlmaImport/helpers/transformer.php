@@ -83,8 +83,8 @@ class Transformer{
 
             //date (facet) & language (iso)
             if(isset($field["008"])):
-                $result["date"][]= substr($field["008"],8,4);
-                $result["language"][]= substr($field["008"],36,3);
+                $result["date"][]= substr($field["008"],7,4);
+                $result["language"][]= substr($field["008"],35,3);
             endif;
 
             //title
@@ -203,10 +203,10 @@ class Transformer{
 
   	            if ($field["700"]['subfields']['4']=="aut") {
 
-  		            $result["Creator"][]=$data;
+  		            $result["creator"][]=$data;
 
   	            } else {
-  		            $result["Contributor"][]=$data;
+  		            $result["contributor"][]=$data;
   	            }
             endif;
         endforeach;
