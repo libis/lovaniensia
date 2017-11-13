@@ -83,8 +83,8 @@ class Transformer{
 
             //date (facet) & language (iso)
             if(isset($field["008"])):
-                $result["date"][]= substring($field["008"],8,4);
-                $result["language"][]= substring($field["008"],36,3);
+                $result["date"][]= substr($field["008"],8,4);
+                $result["language"][]= substr($field["008"],36,3);
             endif;
 
             //title
