@@ -7461,6 +7461,7 @@ section.search-solr h1 {
 
 .solr-section-results .result img {
   width: 100%;
+  max-width: 200px;
 }
 
 @media (max-width: 767px) {
