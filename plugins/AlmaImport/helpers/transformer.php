@@ -92,10 +92,10 @@ class Transformer{
                 $title = $field["245"]['subfields']['a'];
 
                 if(isset($field["245"]['subfields']['b'])):
-                  $title .= $field["245"]['subfields']['b'];
+                  $title .= " ".$field["245"]['subfields']['b'];
                 endif;
                 if(isset($field["245"]['subfields']['c'])):
-                  $title .= $field["245"]['subfields']['c'];
+                  $title .= " ".$field["245"]['subfields']['c'];
                 endif;
                 $result["title"][] = $title;
             endif;
@@ -105,7 +105,7 @@ class Transformer{
                 $alttitle = $field["246"]['subfields']['a'];
 
                 if(isset($field["246"]['subfields']['b'])):
-                  $alttitle .= $field["246"]['subfields']['b'];
+                  $alttitle .= " ".$field["246"]['subfields']['b'];
                 endif;
                 $result["alternative_title"][]= $alttitle;
             endif;
