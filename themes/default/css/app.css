@@ -6309,6 +6309,11 @@ p {
   max-width: 1550px;
 }
 
+.embed {
+  width: 100%;
+  padding: 0;
+}
+
 .navbar {
   background: transparent;
   border-bottom: none;
@@ -7035,7 +7040,13 @@ section.news .news-item:last-of-type {
 
 .item-section .image-row iframe {
   width: 100%;
-  min-height: 500px;
+  min-height: 700px;
+}
+
+@media (max-width: 767px) {
+  .item-section .image-row iframe {
+    min-height: 400px;
+  }
 }
 
 .item-section .image-row img {
@@ -7122,6 +7133,21 @@ section.news .news-item:last-of-type {
 
 .metadata-section .element .element-text {
   overflow: hidden;
+}
+
+.metadata-section .links {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.metadata-section .links a {
+  margin-right: 10px;
+}
+
+.metadata-section .links i {
+  font-size: 1rem;
+  vertical-align: text-top;
 }
 
 .metadata-section .date {
@@ -7457,6 +7483,10 @@ section.search-solr h1 {
 
 .solr-section-results .result h2 {
   font-weight: 800;
+}
+
+.solr-section-results .result .img-column {
+  text-align: center;
 }
 
 .solr-section-results .result img {

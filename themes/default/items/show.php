@@ -17,18 +17,17 @@
     </div>
   </div>
 </div>
-<?php if ($mirador = metadata($item, array('Item Type Metadata','Rosseta ID') || $universal = metadata($item, array('Dublin Core','Relation')
-          ): ?>
+<?php if ($mirador = metadata($item, array('Item Type Metadata','Rosetta ID')) || $universal = metadata($item, array('Dublin Core','Relation'))): ?>
   <section class="item-section general-section">
-    <div class="container-fluid">
+    <div class="container-fluid embed">
       <div class="row">
         <div class="col-xs-12">
           <div class="image-row">
-            <?php if($text_IE):?>
-              <iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=<?php echo $mirador;?>"></iframe>
+            <?php if($mirador):?>
+              <iframe scrolling="no" src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=<?php echo $mirador;?>"></iframe>
             <?php else: ?>
               <iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=<?php echo $universal;?>"></iframe>
-            <?php endif;?>  
+            <?php endif;?>
           </div>
         </div>
       </div>
@@ -145,6 +144,17 @@
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
+              </div>
+              <div class="links">
+                <?php if($text = metadata($item, array('Item Type Metadata','LIMO'))):?>
+                    <a class="catalogue" href="<?php echo $text;?>"><i class="material-icons">&#xE89E;</i> Catalogue</a>
+                <?php endif; ?>
+                <?php if($text = metadata($item, array('Item Type Metadata','Rosetta ID'))):?>
+                    <a class="images" href="//resolver.libis.be/<?php echo $text;?>/representation"><i class="material-icons">&#xE3B6;</i> Images</a>
+                <?php endif; ?>
+                <?php if($text = metadata($item, array('Dublin Core','Identifier'),array("index"=>"1"))):?>
+                    <a class="images" href="<?php echo $text;?>"><i class="material-icons">&#xE3B6;</i> Images</a>
+                <?php endif; ?>
               </div>
           <?php else:?>
               <p class="date"><?php echo metadata('item', array('Dublin Core', 'Date')); ?></p>

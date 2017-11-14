@@ -109,7 +109,7 @@
               <!-- Document. -->
               <div class="row result">
                 <div class="col-xs-12 col-md-2 img-column">
-                    <center><?php
+                    <?php
                     if ($doc->resulttype == 'Item') :
                         $item = get_db()->getTable($doc->model)->find($doc->modelid);
                         echo link_to_item(
@@ -119,7 +119,7 @@
                             $item
                         );
                     endif;
-                    ?></center>
+                    ?>
                 </div>
                 <!-- Header. -->
                 <div class="col-xs-12 col-md-9">
