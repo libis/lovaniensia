@@ -6353,6 +6353,12 @@ header {
   }
 }
 
+.public-nav .navbar-brand img {
+  max-height: 55px;
+  max-width: 200px;
+  padding: 9px 0;
+}
+
 .public-nav .navbar-toggler {
   border: none;
   border-radius: 0px;
@@ -6376,7 +6382,7 @@ header {
   color: rgba(255, 255, 255, 0.7);
   font-weight: normal;
   margin: 0 15px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
 }
