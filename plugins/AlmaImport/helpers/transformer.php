@@ -164,7 +164,7 @@ class Transformer{
             endif;
 
             //source and identifiers
-            if(isset($field["representation"])):
+            if(isset($field["representation"])){
               $label = $field["representation"]["label"];
               $label = explode(" ", $label);
               //KU Leuven Libraries
@@ -176,6 +176,7 @@ class Transformer{
               $result['source'][] = $source;
 
               $result["identifier"][] = $label[5];
+            }  
             elseif(isset($field["852"])){
                 if (isset($field["852"]['subfields']['c'])) {
 			             $result['source'][] =$field["852"]['subfields']['c'];
