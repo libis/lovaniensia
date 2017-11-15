@@ -161,6 +161,9 @@ class OaipmhHarvester_Harvest_Mets extends OaipmhHarvester_Harvest_Abstract
                   if(isset($dcMetadata->$element)){
                       foreach($dcMetadata->$element as $rawText){
                            $text = trim($rawText);
+                           if($element == "coverage" && $text == "Bruxelles"):
+                               $text= "Brussel / Bruxelles";
+                           endif;
                            $elementTexts['Dublin Core'][ucwords($element)][]
                                    = array('text'=> (string) $text, 'html' => false);
                       }
