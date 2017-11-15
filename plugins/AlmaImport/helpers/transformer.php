@@ -148,25 +148,31 @@ class Transformer{
 
             //description
             if (isset($field["300"])):
-                if($field["300"]["ind1"]==' '&&$field["300"]["ind2"]==' '):
+                if(isset($field["300"]["a"])):
     			        $data = $field["300"]['subfields']['a'];
 
-    			        if (isset($field["300"]['subfields']['b'])) {
-    				        $data .= " : ".$field["300"]['subfields']['b'];
+    			        if (isset($field["300"]['subfields']['g'])) {
+    				        $data .= " ".$field["300"]['subfields']['g'];
     			        }
-    			        if (isset($field["300"]['subfields']['c'])) {
-    				        // if b is null, there is no need for a ; because subfields a ends with a ;
-    				        if (isset($field["300"]['subfields']['b'])) {
-    					        $data .= " ; ";
-    				        }
-    				        $data .= $field["300"]['subfields']['c'];
-    			        }
+
     			        $result["description"][]=$data;
                 endif;
             endif;
 
             //source and identifiers
-            if(isset($field["852"])){
+            if(isset($field["representation"])):
+              $label = $field["representation"]["label"];
+              $label = explode(" ", $label);
+              //KU Leuven Libraries
+              $source = $label[0]." ".$label[1]." ".$label[2];
+              //Librabry
+              $source .= $label[3];
+              //Sigel
+              $source .= $label[4];
+              $result['source'][] = $source;
+
+              $result["identifier"][] = $label[5];
+            elseif(isset($field["852"])){
                 if (isset($field["852"]['subfields']['c'])) {
 			             $result['source'][] =$field["852"]['subfields']['c'];
                 }
