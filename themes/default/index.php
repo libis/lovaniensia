@@ -42,7 +42,14 @@
           <div class="row">
               <div class="features image-lov col-md-5 col-xs-12">
                   <div class="card card-image">
-                    <?php echo link_to_item(item_image('fullsize', array('class' => 'card-img-cap'),0,$item),array(),'show',$item); ?>
+                    <?php
+                      if($text = metadata($item,array('Item Type Metadata','Rosetta ID'))):
+                        $image = "<img class='card-img-cap' src='http://resolver.libis.be/".$text."/stream?quality=low'>";
+                      else:
+                        $image = item_image('fullsize', array('class' => 'card-img-cap'),0,$item);
+                      endif;
+                    ?>
+                    <?php echo link_to_item($image,array(),'show',$item); ?>
                   </div>
               </div>
               <div class="features col-md-7 col-xs-12">
