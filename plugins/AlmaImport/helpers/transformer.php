@@ -170,14 +170,14 @@ class Transformer{
               //KU Leuven Libraries
               $source = $label[0]." ".$label[1]." ".$label[2];
               //Librabry
-              $source .= $label[3];
+              $source .= " ".$label[3];
               //Sigel
-              $source .= $label[4];
+              $source .= " ".$label[4];
               $result['source'][] = $source;
 
               $result["identifier"][] = $label[5];
-            }  
-            elseif(isset($field["852"])){
+            }
+            /*elseif(isset($field["852"])){
                 if (isset($field["852"]['subfields']['c'])) {
 			             $result['source'][] =$field["852"]['subfields']['c'];
                 }
@@ -196,7 +196,7 @@ class Transformer{
                 if (isset($field["852"]['subfields']['m'])) {
     					    $result["identifier"][] = $field["852"]['subfields']['m'];
     				    }
-            }
+            }*/
 
             //creator & contributor
             if (isset($field["700"])):
