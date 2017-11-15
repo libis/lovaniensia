@@ -9,7 +9,7 @@
                 <p id="simple-pages-breadcrumbs">
                   <span><a href="<?php echo url('/');?>">Home</a></span>
                    > <span><a href="<?php echo url('/solr-search');?>"><?php echo __("Collection");?></a></span>
-                   > <?php echo metadata('item', array('Dublin Core', 'Title')); ?>
+                   > <?php echo metadata('item', array('Dublin Core', 'Title'),array('snippet'=>'100')); ?>
                  </p>
               </div>
             </div>
@@ -17,14 +17,18 @@
     </div>
   </div>
 </div>
-<?php if ($mirador = metadata($item, array('Item Type Metadata','Rosetta ID')) || $universal = metadata($item, array('Dublin Core','Relation'))): ?>
+<?php
+  $mirador = metadata($item, array('Item Type Metadata','Rosetta ID'));
+  $universal = metadata($item, array('Dublin Core','Relation'));
+?>
+<?php if ($mirador || $universal): ?>
   <section class="item-section general-section">
     <div class="container-fluid embed">
       <div class="row">
         <div class="col-xs-12">
           <div class="image-row">
             <?php if($mirador):?>
-              <iframe scrolling="no" src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=<?php echo $mirador;?>"></iframe>
+              <iframe scrolling="no" src="http://resolver.libis.be/<?php echo $mirador;?>/representation"></iframe>
             <?php else: ?>
               <iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=<?php echo $universal;?>"></iframe>
             <?php endif;?>
