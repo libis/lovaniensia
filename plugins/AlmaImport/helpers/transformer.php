@@ -144,7 +144,7 @@ class Transformer{
 
             //date (period for display)
             if(isset($field["264"])):
-                if($field["264"]["ind1"]==' '&&$field["264"]["ind2"]=='1'):
+                if(isset($field["264"]['subfields']['c'])):
                     $data=$field["264"]['subfields']['c'];
                     $result["period"][] = str_replace('.', '', $data);
                 endif;
