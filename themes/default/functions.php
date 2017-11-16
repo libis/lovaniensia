@@ -42,7 +42,7 @@ function libis_get_news($tag = "")
     if (!$items) : ?>
     <div class="col-md-12 col-lg-4 news-item">
         <p>Er is geen recent nieuws.</p>
-    </div>    
+    </div>
     <?php endif; ?>
     <?php foreach ($items as $item) :?>
       <div class="col-md-12 col-lg-4 news-item">
@@ -52,7 +52,7 @@ function libis_get_news($tag = "")
             <?php echo metadata($item, array('Dublin Core', 'Description'), array('snippet'=>250)); ?>
           </p>
           <p class="read-more">
-            <?php echo link_to_item('Lees meer', array(), 'show', $item); ?>
+            <?php echo link_to_item('Read more', array(), 'show', $item); ?>
           </p>
       </div>
     <?php endforeach;
