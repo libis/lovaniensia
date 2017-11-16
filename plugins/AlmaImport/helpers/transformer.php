@@ -168,18 +168,23 @@ class Transformer{
               $label = $field["representation"]["label"];
               $label = explode(" ", $label);
               //KU Leuven Libraries
-              $source = $label[0]." ".$label[1]." ".$label[2];
+              $source = $label[0]." ".$label[1]." ".$label[2].",";
               //Librabry
-              $source .= " ".$label[3];
-              //Sigel
-              $source .= " ".$label[4];
+              if($label[3] == "BIBC"):
+                $source .= " Special Collections";
+              elseif($label[3] == "GBIB"):
+                $source .= " Maurits Sabbe Library";
+              endif;
+
+              //Sigel not needed
+              //$source .= " ".$label[4];
               $result['source'][] = $source;
 
               $result["identifier"][] = $label[5];
             }
             /*elseif(isset($field["852"])){
-                if (isset($field["852"]['subfields']['c'])) {
-			             $result['source'][] =$field["852"]['subfields']['c'];
+                if (isset($field["852"]['subfields']['b'])) {
+			             $result['source'][] =$field["852"]['subfields']['b'];
                 }
     				    if (isset($field["852"]['subfields']['i'])) {
     					    $result["identifier"][] = $field["852"]['subfields']['i'];

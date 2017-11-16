@@ -98,41 +98,14 @@
 </section>
 <section class="news">
   <div class="container">
-      <div class="row ">
-          <div class="col-md-12 col-lg-4 news-item">
-              <h6>News <span>02-06-2017</span></h6>
-              <h3>Sed luctus blandit</h3>
-              <p class="description">
-                Nam pulvinar fringilla egestas. Donec nulla quam, condimentum at metus ut, semper luctus massa. Proin sit amet magna non augue bibendum iaculis nec nec lorem.
-              </p>
-              <p class="read-more">
-                <a href="">Read more</a>
-              </p>
-          </div>
-          <div class="col-md-12 col-lg-4 news-item">
-              <h6>News <span>02-06-2017</span></h6>
-              <h3>Sed luctus blandit</h3>
-              <p class="description">
-                Nam pulvinar fringilla egestas. Donec nulla quam, condimentum at metus ut, semper luctus massa. Proin sit amet magna non augue bibendum iaculis nec nec lorem.
-              </p>
-              <p class="read-more">
-                <a href="">Read more</a>
-              </p>
-          </div>
-          <div class="col-md-12 col-lg-4 news-item">
-              <h6>News <span>02-06-2017</span></h6>
-              <h3>Sed luctus blandit</h3>
-              <p class="description">
-                Nam pulvinar fringilla egestas. Donec nulla quam, condimentum at metus ut, semper luctus massa. Proin sit amet magna non augue bibendum iaculis nec nec lorem.
-              </p>
-              <p class="read-more">
-                <a href="">Read more</a>
-              </p>
-          </div>
+      <div class="row">
+        <?php
+          echo libis_get_news();
+        ?>
       </div>
       <div class="row more-news">
         <div class="col-md-12 col-xs-12">
-          <a href="">read more news <i class="material-icons">&#xE315;</i></a>
+          <a href="<?php echo url("/items/browse?type=News");?>">read more news <i class="material-icons">&#xE315;</i></a>
         </div>
       </div>
   </div>

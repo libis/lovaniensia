@@ -27,27 +27,27 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
      * @var Collection
      */
     protected $_collection;
-    
+
     /**
      * Actions to be carried out before the harvest of any items begins.
      */
      protected function _beforeHarvest()
     {
         $harvest = $this->_getHarvest();
-   
+
         $collectionMetadata = array(
             'metadata' => array(
                 'public' => $this->getOption('public'),
                 'featured' => $this->getOption('featured'),
             ),);
         $collectionMetadata['elementTexts']['Dublin Core']['Title'][]
-            = array('text' => (string) $harvest->set_name, 'html' => false); 
+            = array('text' => (string) $harvest->set_name, 'html' => false);
         $collectionMetadata['elementTexts']['Dublin Core']['Description'][]
-            = array('text' => (string) $harvest->set_Description, 'html' => false); 
-        
+            = array('text' => (string) $harvest->set_Description, 'html' => false);
+
         $this->_collection = $this->_insertCollection($collectionMetadata);
     }
-    
+
     /**
      * Harvest one record.
      *
@@ -56,35 +56,52 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
      */
     protected function _harvestRecord($record)
     {
+        $fileMetadata = array();
         $itemMetadata = array(
-            'collection_id' => $this->_collection->id, 
-            'public'        => $this->getOption('public'), 
+            'collection_id' => $this->_collection->id,
+            'public'        => $this->getOption('public'),
             'featured'      => $this->getOption('featured'),
         );
-        
+
         $dcMetadata = $record
                     ->metadata
                     ->children(self::OAI_DC_NAMESPACE)
                     ->children(self::DUBLIN_CORE_NAMESPACE);
-        
+
         $elementTexts = array();
-        $elements = array('contributor', 'coverage', 'creator', 
-                          'date', 'description', 'format', 
-                          'identifier', 'language', 'publisher', 
-                          'relation', 'rights', 'source', 
+        $elements = array('contributor', 'coverage', 'creator',
+                          'date', 'description', 'format',
+                          'identifier', 'language', 'publisher',
+                          'relation', 'rights', 'source',
                           'subject', 'title', 'type');
         foreach ($elements as $element) {
             if (isset($dcMetadata->$element)) {
                 foreach ($dcMetadata->$element as $rawText) {
                     $text = trim($rawText);
-                    $elementTexts['Dublin Core'][ucwords($element)][] 
+                    //brussels hack
+                    if($element == "coverage" && $text == "Bruxelles"):
+                        $text= "Brussel / Bruxelles";
+                    endif;
+                    //files hack
+                    if($element == "identifier" && substr($text, -10) === "/THUMBNAIL"):
+                      $fileMetadata['files'][] = array(
+                          'Upload' => null,
+                          'Url' => (string) $text,
+                          'source' => (string) $text,
+                          //'name'   => (string) $file['title'],
+                          'metadata' => array()
+                      );
+                    endif;
+
+                    $elementTexts['Dublin Core'][ucwords($element)][]
                         = array('text' => (string) $text, 'html' => false);
                 }
             }
         }
-        
+
+
         return array('itemMetadata' => $itemMetadata,
                      'elementTexts' => $elementTexts,
-                     'fileMetadata' => array());
+                     'fileMetadata' => $fileMetadata);
     }
 }

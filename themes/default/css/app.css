@@ -7209,6 +7209,21 @@ section.news .news-item:last-of-type {
   font-weight: bold;
 }
 
+.news-archive-item {
+  margin-bottom: 2rem;
+}
+
+.news-archive-item h2 {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5rem;
+}
+
+.news-archive-item h6 {
+  font-family: "Raleway", sans-serif;
+  color: #666;
+  margin-bottom: 0.8rem;
+}
+
 .exhibit-show-section,
 .simple-page-section {
   z-index: 101;
