@@ -6531,13 +6531,13 @@ header {
   padding: 0rem 0;
   background: rgba(0, 89, 96, 0.95);
   font-family: "Raleway", sans-serif;
+  background: rgba(0, 89, 96, 0.95) url("../images/lova2.png") no-repeat bottom center/cover;
+  background-position: 50% 80%;
 }
 
 .jumbotron .container {
   padding-top: 4rem;
   padding-bottom: 4rem;
-  background: url("../images/lova2.png") no-repeat bottom left/cover;
-  background-position: 50% 30%;
 }
 
 .jumbotron p {
