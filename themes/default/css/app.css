@@ -6524,11 +6524,10 @@ header {
 }
 
 .jumbotron {
-  border-bottom: 1px solid rgba(0, 89, 96, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0;
   margin: 0;
-  padding: 0rem 0;
+  padding: 0;
   background: rgba(0, 89, 96, 0.95);
   font-family: "Raleway", sans-serif;
   background: rgba(0, 89, 96, 0.95) url("../images/lova2.png") no-repeat bottom center/cover;
@@ -6593,17 +6592,6 @@ header {
 .jumbotron .more a:hover {
   text-decoration: none;
   color: #fff;
-}
-
-.jumbotron .intro-content:first-child {
-  border-right: 1px solid #005960;
-}
-
-@media (max-width: 767px) {
-  .jumbotron .intro-content:first-child {
-    border: none;
-    border-bottom: 1px solid #005960;
-  }
 }
 
 @media (max-width: 767px) {
