@@ -1,14 +1,14 @@
 <?php
 /**
  * Omeka
- * 
+ *
  * @copyright Copyright 2007-2012 Roy Rosenzweig Center for History and New Media
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
 /**
  * Ingest URLs into Omeka.
- * 
+ *
  * @package Omeka\File\Ingest
  */
 class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
@@ -23,7 +23,7 @@ class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
     {
         if (!($original = parent::_getOriginalFilename($fileInfo))) {
             $url = $fileInfo['source'];
-            
+
             //gets rid of the query string, if it exists
             if ($index = strpos($url, '?')) {
                 $url = substr($url, 0, $index);
@@ -44,8 +44,27 @@ class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
      */
     protected function _getHttpClient($source)
     {
-        return $this->_client = new Zend_Http_Client($source, array(
-                'useragent' => 'Omeka/' . OMEKA_VERSION));
+        $this->_client = new Zend_Http_Client($source);
+
+        //hack ucl
+        if(get_option('rosetta_proxy')):
+          $this->_client->setConfig(
+            array(
+                'useragent' => 'Omeka/' . OMEKA_VERSION
+                'adapter'    => 'Zend_Http_Client_Adapter_Proxy',
+                'proxy_host' => get_option('rosetta_proxy')
+                'proxy_port' => 8080
+            )
+          );
+        else:
+          $this->_client->setConfig(
+            array(
+                'useragent' => 'Omeka/' . OMEKA_VERSION
+            )
+          );
+        endif;
+
+        return  $this->_client;
     }
 
     /**
@@ -69,7 +88,7 @@ class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
                 'Could not transfer the file from "' . $source
                 . '" to "' . $destination . '": ' . $e->getMessage());
         }
-    
+
         if ($response->isError()) {
             $code = $response->getStatus();
             $msg = "The server returned code '$code'";
