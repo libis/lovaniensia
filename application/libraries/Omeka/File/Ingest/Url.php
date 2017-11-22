@@ -44,27 +44,8 @@ class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
      */
     protected function _getHttpClient($source)
     {
-        $this->_client = new Zend_Http_Client($source);
-
-        //hack ucl
-        if(get_option('rosetta_proxy')):
-          $this->_client->setConfig(
-            array(
-                'useragent' => 'Omeka/' . OMEKA_VERSION
-                'adapter'    => 'Zend_Http_Client_Adapter_Proxy',
-                'proxy_host' => get_option('rosetta_proxy'),
-                'proxy_port' => 8080
-            )
-          );
-        else:
-          $this->_client->setConfig(
-            array(
-                'useragent' => 'Omeka/' . OMEKA_VERSION
-            )
-          );
-        endif;
-
-        return  $this->_client;
+        return $this->_client = new Zend_Http_Client($source, array(
+                'useragent' => 'Omeka/' . OMEKA_VERSION));
     }
 
     /**
@@ -82,6 +63,14 @@ class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
             $client = $this->_getHttpClient($source);
             $client->setHeaders('Accept-encoding', 'identity');
             $client->setStream($destination);
+            //hack ucl
+            $client->setConfig(
+              array(
+                  'adapter'    => 'Zend_Http_Client_Adapter_Proxy',
+                  'proxy_host' => get_option('rosetta_proxy'),
+                  'proxy_port' => 8080
+              )
+            );
             $response = $client->request('GET');
         } catch (Zend_Http_Client_Exception $e) {
             throw new Omeka_File_Ingest_Exception(
