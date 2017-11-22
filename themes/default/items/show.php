@@ -146,7 +146,13 @@
                 <?php if($text = metadata('item', array('Dublin Core','Source'))):?>
                   <div class="element">
                       <h3><?php echo __('Source');?></h3>
-                      <div class="element-text"><?php echo $text;?></div>
+                      <?php if($universal):?>
+                        <div class="element-text">
+                          Bibliothèques de l’Université catholique de Louvain. Réserve patrimoniale
+                        </div>
+                      <?php else:?>
+                        <div class="element-text"><?php echo $text;?></div>
+                      <?php endif;?>
                   </div>
                 <?php endif;?>
 
