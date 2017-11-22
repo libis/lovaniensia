@@ -52,7 +52,7 @@ class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
             array(
                 'useragent' => 'Omeka/' . OMEKA_VERSION
                 'adapter'    => 'Zend_Http_Client_Adapter_Proxy',
-                'proxy_host' => get_option('rosetta_proxy')
+                'proxy_host' => get_option('rosetta_proxy'),
                 'proxy_port' => 8080
             )
           );

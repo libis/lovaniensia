@@ -171,7 +171,7 @@ class OaipmhHarvester_Request
                 'useragent' => $this->_getUserAgent(),
                 'timeout'      => 20,
                 'adapter'    => 'Zend_Http_Client_Adapter_Proxy',
-                'proxy_host' => get_option('rosetta_proxy')
+                'proxy_host' => get_option('rosetta_proxy'),
                 'proxy_port' => 8080
             )
         );
