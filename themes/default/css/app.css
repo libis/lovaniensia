@@ -7562,12 +7562,15 @@ section.search-solr h1 {
 .solr-section-results #solr-facets ul {
   margin: 5px 0 15px 0;
   list-style: none;
-  padding: 10px 0;
+  padding: 10px;
+  background: rgba(204, 204, 204, 0.2);
   border-top: 1px solid rgba(204, 204, 204, 0.5);
 }
 
 .solr-section-results #solr-facets ul li {
   font-size: 1rem;
+  padding-left: 10px;
+  position: relative;
 }
 
 .solr-section-results #solr-facets ul li a {
@@ -7576,6 +7579,9 @@ section.search-solr h1 {
 
 .solr-section-results #solr-facets ul li:before {
   content: "\203A";
+  position: absolute;
+  left: 0;
+  top: -0.2em;
 }
 
 .solr-section-results .pagination {
@@ -7678,6 +7684,10 @@ footer a:hover {
 footer .contact-info {
   font-size: 0.9rem;
   color: rgba(102, 102, 102, 0.8);
+}
+
+footer .leuven {
+  margin-bottom: 15px;
 }
 
 footer .copyright {
