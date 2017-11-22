@@ -51,7 +51,7 @@
                     <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="modal" data-target="#modalNav" aria-controls="exCollapsingNavbar2">
                       &#9776;
                     </button>
-                    <a class="navbar-brand" href="<?php echo WEB_ROOT;?>"><img src="<?php echo img('lova_logo.png');?>" alt="Lovaniensia"></a>
+                    <a class="navbar-brand" href="<?php echo WEB_ROOT;?>">Lovaniensia</a>
                     <div class="pull-xs-right hidden-sm-down">
                       <?php echo public_nav_main(array('role' => 'navigation')) -> setUlClass('nav navbar-nav'); ?>
                     </div>
