@@ -6529,7 +6529,7 @@ header {
   margin: 0;
   padding: 0;
   background: rgba(0, 89, 96, 0.95);
-  font-family: "Droid Serif", serif;
+  font-family: "Raleway", sans-serif;
   background: rgba(0, 89, 96, 0.95) url("../images/lova2.png") no-repeat bottom center/cover;
   background-position: 50% 80%;
 }
@@ -6544,7 +6544,7 @@ header {
 }
 
 .jumbotron .intro-content {
-  text-align: left;
+  text-align: justify;
   color: #fff;
   font-size: 1rem;
 }
