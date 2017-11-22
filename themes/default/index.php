@@ -4,7 +4,7 @@
         <div class="row">
             <div class="intro col-md-12">
               <div class='row'>
-                <div class="intro-content col-xs-12 offset-md-1 offset-lg-2 col-md-7 col-lg-5">
+                <div class="intro-content col-xs-12 offset-md-1 offset-lg-1 col-md-7 col-lg-7">
                     <?php echo libis_get_simple_page_content("Info");?>
                 </div>
                 <div class="more col-xs-12 col-md-4 col-xl-4">
@@ -50,16 +50,16 @@
               </div>
               <div class="features col-md-7 col-xs-12">
                   <div class="card card-text">
-                      <h1 class="section-title projecten-title">
-                        <span><a href="<?php echo record_url($item);?>"><?php echo metadata($item, array('Dublin Core','Title'));?></a></span>
-                      </h1>
-                      <?php if($text = metadata($item, array('Dublin Core','Description'))):?>
+                    <h1 class="section-title projecten-title">
+                      <span><a href="<?php echo record_url($item);?>"><?php echo metadata($item, array('Dublin Core','Title'));?></a></span>
+                    </h1>
+                      <!--<?php if($text = metadata($item, array('Dublin Core','Description'))):?>
                         <div class="description element">
                           <div class="element-text">
                             <div class="element-text"><p><?php echo $text;?></p></div>
                           </div>
                         </div>
-                      <?php endif;?>
+                      <?php endif;?>-->
                       <div class="card-block">
                         <?php if($text = metadata($item, array('Dublin Core','Creator'))):?>
                           <div class="element">
