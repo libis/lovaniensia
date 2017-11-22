@@ -19,7 +19,7 @@
 </div>
 <?php
   $mirador = metadata($item, array('Item Type Metadata','Rosetta ID'));
-  $universal = metadata($item, array('Dublin Core','Relation'));
+  $universal = metadata($item, array('Dublin Core','Relation'),array("all" => true));
 ?>
 <?php if ($mirador || $universal): ?>
   <section class="item-section general-section">
@@ -30,7 +30,7 @@
             <?php if($mirador):?>
               <iframe scrolling="no" src="http://resolver.libis.be/<?php echo $mirador;?>/representation"></iframe>
             <?php else: ?>
-              <iframe src="http://depot.lias.be/delivery/DeliveryManagerServlet?dps_pid=<?php echo $universal;?>"></iframe>
+              <iframe src="<?php echo $universal[0];?>"></iframe>
             <?php endif;?>
           </div>
         </div>
@@ -68,24 +68,16 @@
           <h1 class="section-title projecten-title"><span><?php echo metadata('item', array('Dublin Core', 'Title')); ?></span></h1>
 
           <?php if ($type != 'News'): ?>
-              <!-- If the item belongs to a collection, the following creates a link to that collection. -->
-              <?php if (metadata('item', 'Collection Name')): ?>
-                <h3 id="collection"><?php echo __('Collection'); ?>: <?php echo link_to_collection_for_item(); ?></h3>
-              <?php endif; ?>
-              <!--<?php if($text = metadata($item, array('Dublin Core','Description'))):?>
-                  <div class="description element">
-                    <div class="element-text">
-                      <div class="element-text"><p><?php echo $text;?></p></div>
-                    </div>
-                  </div>
-              <?php endif; ?>-->
+
               <div class="links">
                 <?php if($text = metadata($item, array('Item Type Metadata','LIMO'))):?>
                     <a class="catalogue" href="<?php echo $text;?>"><i class="material-icons">&#xE89E;</i> Catalogue</a>
+                <?php elseif($text = metadata($item, array('Dublin Core','Identifier'),array("index"=>"2"))):?>
+                    <a class="images" href="<?php echo $text;?>"><i class="material-icons">&#xE3B6;</i> Catalogue</a>
                 <?php endif; ?>
                 <?php if($text = metadata($item, array('Item Type Metadata','Rosetta ID'))):?>
                     <a class="images" href="//resolver.libis.be/<?php echo $text;?>/representation"><i class="material-icons">&#xE3B6;</i> Images</a>
-                <?php elseif($text = metadata($item, array('Dublin Core','Identifier'),array("index"=>"1"))):?>
+                <?php elseif($text = metadata($item, array('Dublin Core','Relation'),array("index"=>"0"))):?>
                     <a class="images" href="<?php echo $text;?>"><i class="material-icons">&#xE3B6;</i> Images</a>
                 <?php endif; ?>
               </div>
@@ -158,7 +150,14 @@
                   </div>
                 <?php endif;?>
 
-                <?php if($text = metadata('item', array('Dublin Core','Identifier'))):?>
+                <?php if($mirador && $text = metadata('item', array('Dublin Core','Identifier'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Call number');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+
+                <?php if($universal && $text = metadata('item', array('Dublin Core','Identifier'),array("index"=>"1"))):?>
                   <div class="element">
                       <h3><?php echo __('Call number');?></h3>
                       <div class="element-text"><?php echo $text;?></div>

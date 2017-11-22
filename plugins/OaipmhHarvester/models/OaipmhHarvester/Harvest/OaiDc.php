@@ -83,7 +83,7 @@ class OaipmhHarvester_Harvest_OaiDc extends OaipmhHarvester_Harvest_Abstract
                         $text= "Brussel / Bruxelles";
                     endif;
                     //files hack
-                    if($element == "identifier" && substr($text, -10) === "/THUMBNAIL"):
+                    if($element == "relation" && strpos($text, '/THUMBNAIL') !== false):
                       $fileMetadata['files'][] = array(
                           'Upload' => null,
                           'Url' => (string) $text,
