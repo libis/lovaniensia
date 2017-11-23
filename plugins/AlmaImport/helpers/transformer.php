@@ -110,7 +110,7 @@ class Transformer{
                 $result["alternative_title"][]= $alttitle;
             endif;
 
-            //place
+            //place, publisher, author and contributor 710
             if(isset($field["710"])):
               if($field["710"]['subfields']['4']=="prt" || $field["710"]['subfields']['4']=="pbl"
               || $field["710"]['subfields']['4']=="bsl"):
@@ -120,12 +120,13 @@ class Transformer{
                 endif;
                 $result["place"][] = $place;
                 $result["place"] = array_unique($result["place"]);
-              endif;
-            endif;
 
-            //publisher
-            if(isset($field["710"])):
                 $result["publisher"][]=$field["710"]['subfields']['a'];
+              elseif($field["710"]['subfields']['4']=="aut"):
+                $result["creator"][]=$field["710"]['subfields']['a'];
+              else:
+                $result["contributor"][]=$field["710"]['subfields']['a'];
+              endif;
             endif;
 
             //images
