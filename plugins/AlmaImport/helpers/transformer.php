@@ -119,6 +119,7 @@ class Transformer{
                   $place = "Brussel / Bruxelles";
                 endif;
                 $result["place"][] = $place;
+                $result["place"] = array_unique($result["place"]);
               endif;
             endif;
 

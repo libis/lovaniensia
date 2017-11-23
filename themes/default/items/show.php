@@ -83,13 +83,13 @@
               </div>
               <div class="element-set">
                 <!-- creators -->
-                <?php if($text = metadata('item', array('Dublin Core','Creator'))):?>
+                <?php if($text = metadata('item', array('Dublin Core','Creator'),array("delimiter" => ", "))):?>
                   <div class="element">
                       <h3><?php echo __('Creator');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Contributor'))):?>
+                <?php if($text = metadata('item', array('Dublin Core','Contributor'),array("delimiter" => ", "))):?>
                   <div class="element">
                       <h3><?php echo __('Contributor');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
@@ -111,7 +111,7 @@
                 <?php endif;?>
 
                 <!-- impressum -->
-                <?php if($text = metadata('item', array('Dublin Core','Coverage'))):?>
+                <?php if($text = metadata('item', array('Dublin Core','Coverage'),array("delimiter" => ", "))):?>
                   <div class="element">
                       <h3><?php echo __('Place');?></h3>
                       <?php if($text == "Brussel" || $text == "Bruxelles"):?>
@@ -121,7 +121,7 @@
                       <?php endif;?>
                   </div>
                 <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Publisher'))):?>
+                <?php if($text = metadata('item', array('Dublin Core','Publisher'),array("delimiter" => ", "))):?>
                   <div class="element">
                       <h3><?php echo __('Publisher');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
