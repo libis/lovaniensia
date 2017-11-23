@@ -83,13 +83,13 @@
               </div>
               <div class="element-set">
                 <!-- creators -->
-                <?php if($text = metadata('item', array('Dublin Core','Creator'),array("delimiter" => ", "))):?>
+                <?php if($text = metadata('item', array('Dublin Core','Creator'),array("delimiter" => "; "))):?>
                   <div class="element">
                       <h3><?php echo __('Creator');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Contributor'),array("delimiter" => ", "))):?>
+                <?php if($text = metadata('item', array('Dublin Core','Contributor'),array("delimiter" => "; "))):?>
                   <div class="element">
                       <h3><?php echo __('Contributor');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
@@ -121,7 +121,7 @@
                       <?php endif;?>
                   </div>
                 <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Publisher'),array("delimiter" => ", "))):?>
+                <?php if($text = metadata('item', array('Dublin Core','Publisher'),array("delimiter" => "; "))):?>
                   <div class="element">
                       <h3><?php echo __('Publisher');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
