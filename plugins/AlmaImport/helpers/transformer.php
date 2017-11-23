@@ -152,7 +152,7 @@ class Transformer{
 
             //description
             if (isset($field["300"])):
-                if(isset($field["300"]["a"])):
+                if(isset($field["300"]['subfields']["a"])):
     			        $data = $field["300"]['subfields']['a'];
 
     			        if (isset($field["300"]['subfields']['g'])) {
