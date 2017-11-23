@@ -112,11 +112,14 @@ class Transformer{
 
             //place
             if(isset($field["710"])):
+              if($field["710"]['subfields']['4']=="prt" || $field["710"]['subfields']['4']=="pbl"
+              || $field["710"]['subfields']['4']=="bsl"):
                 $place = $field["710"]['subfields']['c'];
                 if($place == "Brussel" || $place == "Bruxelles"):
                   $place = "Brussel / Bruxelles";
                 endif;
                 $result["place"][] = $place;
+              endif;
             endif;
 
             //publisher
