@@ -7477,7 +7477,7 @@ section.search-solr h1 {
 }
 
 .solr-section-results h2 {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.9rem;
   color: rgba(51, 51, 51, 0.5);
   margin-bottom: 15px;
@@ -7498,7 +7498,7 @@ section.search-solr h1 {
 }
 
 .solr-section-results .result h2 {
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .solr-section-results .result .img-column {
