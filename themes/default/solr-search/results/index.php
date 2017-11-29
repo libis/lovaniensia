@@ -20,7 +20,6 @@
                   </span>
                 </div>
               </form>
-              <p class="filter">Explore by: <a href="<?php echo url("professors");?>">professors</a></p>
             </div>
         </div>
     </div>

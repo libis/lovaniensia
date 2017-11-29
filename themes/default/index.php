@@ -1,5 +1,4 @@
-<?php echo head(array('bodyid'=>'home', 'bodyclass' =>'two-col'));
-var_dump $_SESSION;?>
+<?php echo head(array('bodyid'=>'home', 'bodyclass' =>'two-col'));?>
 <div class="jumbotron">
     <div class="container">
         <div class="row">
@@ -30,7 +29,6 @@ var_dump $_SESSION;?>
                   </span>
                 </div>
               </form>
-              <p class="filter">Explore by: <a href="<?php echo url("professors");?>">professors</a></p>
             </div>
         </div>
     </div>

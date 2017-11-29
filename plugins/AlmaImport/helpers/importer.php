@@ -124,7 +124,7 @@ class Importer{
                     if($element->id != 43):
                       $text = utf8_decode($text);
                     endif;
-                    $element_text->text
+                    $element_text->text;
                     $element_text->save();
                 endforeach;
             endif;
