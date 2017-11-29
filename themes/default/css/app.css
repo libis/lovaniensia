@@ -7520,6 +7520,74 @@ section.search-solr h1 {
   font-size: 1.2rem;
 }
 
+.solr-section-results .result .solr-metadata {
+  background: none;
+  border-top: 1px solid rgba(102, 102, 102, 0.1);
+  padding-top: 1rem;
+}
+
+.solr-section-results .result .solr-metadata h3 {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: "Raleway", sans-serif;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  overflow: hidden;
+  float: left;
+  clear: left;
+  width: 150px;
+  color: rgba(51, 51, 51, 0.8);
+  font-weight: 500;
+}
+
+.solr-section-results .result .solr-metadata p {
+  overflow: auto;
+}
+
+.solr-section-results .result .solr-metadata .element:last-child p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .solr-section-results .result .solr-metadata {
+    background: rgba(51, 51, 51, 0.1);
+    padding: 1rem 1rem;
+  }
+  .solr-section-results .result .solr-metadata h3 {
+    float: none;
+    width: 100%;
+  }
+  .solr-section-results .result .solr-metadata h4 {
+    font-size: 1.5rem;
+  }
+  .solr-section-results .result .solr-metadata .title::before {
+    line-height: 1.5rem;
+  }
+}
+
+.solr-section-results .result .footer {
+  border-top: 1px solid rgba(0, 89, 96, 0.1);
+  text-align: right;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.solr-section-results .result .footer a {
+  font-weight: bold;
+  font-family: "Raleway", sans-serif;
+  text-transform: lowercase;
+}
+
+.solr-section-results .result .footer a i {
+  vertical-align: text-bottom;
+  font-size: 1.2rem;
+}
+
+.solr-section-results .result .footer a:hover {
+  text-decoration: none;
+}
+
 .solr-section-results #solr-facets {
   padding: 2rem;
 }

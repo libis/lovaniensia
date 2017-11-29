@@ -123,28 +123,52 @@
                 <!-- Header. -->
                 <div class="col-xs-12 col-md-9">
 
-                    <!-- Record URL. -->
-                    <?php $url = SolrSearch_Helpers_View::getDocumentUrl($doc); ?>
+                  <!-- Record URL. -->
+                  <?php $url = SolrSearch_Helpers_View::getDocumentUrl($doc); ?>
 
-                    <!-- Title. -->
-                    <h2><a href="<?php echo $url; ?>" class="result-title">
-                    <?php
-                    $title = is_array($doc->title) ? $doc->title[0] : $doc->title;
-                    if (empty($title)) {
-                        $title = '<i>'.__('Untitled').'</i>';
-                    }
-                    echo $title;
-                    ?>
-                    </a></h2>
+                  <!-- Title. -->
+                  <h2><a href="<?php echo $url; ?>" class="result-title">
+                  <?php
+                  $title = is_array($doc->title) ? $doc->title[0] : $doc->title;
+                  if (empty($title)) {
+                      $title = '<i>'.__('Untitled').'</i>';
+                  }
+                  echo $title;
+                  ?>
+                  </a></h2>
 
-                    <?php
-                        if ($doc->resulttype == 'Item') :
-                          $item = get_db()->getTable($doc->model)->find($doc->modelid);
-                          if($text = metadata($item, array('Dublin Core','Description'))):
-                            echo $text;
-                          endif;
-                        endif;
-                    ?>
+                  <?php if ($doc->resulttype == 'Item') :?>
+                    <div class="solr-metadata">
+                        <?php $item = get_db()->getTable($doc->model)->find($doc->modelid);?>
+                        <?php if($text = metadata($item, array('Dublin Core','Creator'),array("delimiter"=>"; "))):?>
+                          <div class="element">
+                              <h3><?php echo __('Creator');?></h3>
+                              <div class="element-text"><p><?php echo $text;?></p></div>
+                          </div>
+                        <?php endif;?>
+                        <?php if($text = metadata($item, array('Dublin Core','Coverage'))):?>
+                          <div class="element">
+                              <h3><?php echo __('Place');?></h3>
+                              <div class="element-text"><p><?php echo $text;?></p></div>
+                          </div>
+                        <?php endif;?>
+                        <?php if($text = metadata($item, array('Dublin Core','Date'))):?>
+                          <div class="element">
+                              <h3><?php echo __('Date');?></h3>
+                              <div class="element-text"><p><?php echo $text;?></p></div>
+                          </div>
+                        <?php endif;?>
+                        <?php if($text = metadata($item, array('Dublin Core','Subject'),array("delimiter"=>", "))):?>
+                          <div class="element">
+                              <h3><?php echo __('Subject');?></h3>
+                              <div class="element-text"><p><?php echo $text;?></p></div>
+                          </div>
+                        <?php endif;?>
+                      </div>
+                      <div class="footer">
+                          <a href="<?php echo record_url($item);?>">View item<i class="material-icons">&#xE315;</i></a>
+                      </div>
+                    <?php endif;?>
                 </div>
               </div>
             <?php endforeach; ?>
