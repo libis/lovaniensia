@@ -52,13 +52,6 @@
                     <h1 class="section-title projecten-title">
                       <span><a href="<?php echo record_url($item);?>"><?php echo metadata($item, array('Dublin Core','Title'));?></a></span>
                     </h1>
-                      <!--<?php if($text = metadata($item, array('Dublin Core','Description'))):?>
-                        <div class="description element">
-                          <div class="element-text">
-                            <div class="element-text"><p><?php echo $text;?></p></div>
-                          </div>
-                        </div>
-                      <?php endif;?>-->
                       <div class="card-block">
                         <?php if($text = metadata($item, array('Dublin Core','Creator'))):?>
                           <div class="element">

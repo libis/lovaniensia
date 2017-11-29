@@ -132,17 +132,17 @@
                   </div>
                 <?php endif;?>
 
-                <?php if($text = metadata('item', array('Dublin Core','Description'))):?>
+                <!-- subjects -->
+                <?php if($text = metadata('item', array('Dublin Core','Subject'),array("delimiter" => ", "))):?>
                   <div class="element">
-                      <h3><?php echo __('Description');?></h3>
+                      <h3><?php echo __('Subject');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
 
-                <!-- subjects -->
-                <?php if($text = metadata('item', array('Dublin Core','Subject'))):?>
+                <?php if($text = metadata('item', array('Dublin Core','Description'))):?>
                   <div class="element">
-                      <h3><?php echo __('Subject');?></h3>
+                      <h3><?php echo __('Description');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
