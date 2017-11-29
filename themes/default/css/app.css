@@ -6607,7 +6607,7 @@ header {
 .search {
   color: white;
   background: rgba(0, 89, 96, 0.9);
-  padding: 3rem 0 3rem 0;
+  padding: 2.5rem 0 2.5rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -6628,6 +6628,7 @@ header {
   border: none;
   margin: 0 0 0 0;
   line-height: 2;
+  padding: 0 1rem;
   display: inline-block;
 }
 
@@ -7374,7 +7375,7 @@ section.news .news-item:last-of-type {
 section.search-solr {
   background: rgba(0, 89, 96, 0.8);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 3rem 0 2rem 0;
+  padding: 2rem 0 2rem 0;
   border-bottom: 1px solid rgba(0, 89, 96, 0.1);
 }
 
