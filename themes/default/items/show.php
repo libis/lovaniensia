@@ -96,6 +96,27 @@
                   </div>
                 <?php endif;?>
 
+                <!-- coverage -->
+                <?php if($text = metadata('item', array('Dublin Core','Coverage'),array("delimiter" => ", "))):?>
+                  <div class="element">
+                      <h3><?php echo __('Place');?></h3>
+                      <?php if($text == "Brussel" || $text == "Bruxelles"):?>
+                        <div class="element-text">Brussel / Bruxelles</div>
+                      <?php else:?>
+                        <div class="element-text"><?php echo $text;?></div>
+                      <?php endif;?>
+                  </div>
+                <?php endif;?>
+
+                <!-- Publisher -->
+                <?php if($text = metadata('item', array('Dublin Core','Publisher'),array("delimiter" => "; "))):?>
+                  <div class="element">
+                      <h3><?php echo __('Publisher');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
+                  </div>
+                <?php endif;?>
+
+                <!-- Date -->
                 <?php if($text = metadata('item', array('Dublin Core','Date'))):?>
                   <div class="element">
                       <h3><?php echo __('Date');?></h3>
@@ -117,25 +138,6 @@
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
-
-                <!-- impressum -->
-                <?php if($text = metadata('item', array('Dublin Core','Coverage'),array("delimiter" => ", "))):?>
-                  <div class="element">
-                      <h3><?php echo __('Place');?></h3>
-                      <?php if($text == "Brussel" || $text == "Bruxelles"):?>
-                        <div class="element-text">Brussel / Bruxelles</div>
-                      <?php else:?>
-                        <div class="element-text"><?php echo $text;?></div>
-                      <?php endif;?>
-                  </div>
-                <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Publisher'),array("delimiter" => "; "))):?>
-                  <div class="element">
-                      <h3><?php echo __('Publisher');?></h3>
-                      <div class="element-text"><?php echo $text;?></div>
-                  </div>
-                <?php endif;?>
-
 
                 <!-- subjects -->
                 <?php if($text = metadata('item', array('Dublin Core','Subject'))):?>
