@@ -1,4 +1,5 @@
-<?php echo head(array('bodyid'=>'home', 'bodyclass' =>'two-col')); ?>
+<?php echo head(array('bodyid'=>'home', 'bodyclass' =>'two-col'));
+var_dump $_SESSION;?>
 <div class="jumbotron">
     <div class="container">
         <div class="row">

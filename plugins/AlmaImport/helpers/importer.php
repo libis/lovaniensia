@@ -121,7 +121,10 @@ class Importer{
                     $element_text->record_type = 'Item';
                     $element_text->element_id = $element->id;
                     $element_text->html = 0;
-                    $element_text->text = utf8_decode($text);
+                    if($element->id != 43):
+                      $text = utf8_decode($text);
+                    endif;
+                    $element_text->text
                     $element_text->save();
                 endforeach;
             endif;

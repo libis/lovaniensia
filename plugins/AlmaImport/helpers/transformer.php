@@ -66,14 +66,6 @@ class Transformer{
     public function transform($fields,$representation){
         $result="";
 
-        /*
-          spatial: 264a
-          publisher: 264b
-
-          collectie? 852c
-          plaatskenmerk 852hik
-        */
-
         foreach($fields as $field):
             //mms id & LIMO link
             if(isset($field["001"])):
@@ -84,7 +76,11 @@ class Transformer{
             //date (facet) & language (iso)
             if(isset($field["008"])):
                 $result["date"][]= substr($field["008"],7,4);
-                $result["language"][]= substr($field["008"],35,3);
+                $language = substr($field["008"],35,3);
+                if($language == "fre"):
+                  $language = "fr";
+                endif;
+                $result["language"][] = $language;
             endif;
 
             //title
@@ -182,31 +178,10 @@ class Transformer{
               endif;
 
               //Sigel not needed
-              //$source .= " ".$label[4];
               $result['source'][] = $source;
 
               $result["identifier"][] = $label[5];
             }
-            /*elseif(isset($field["852"])){
-                if (isset($field["852"]['subfields']['b'])) {
-			             $result['source'][] =$field["852"]['subfields']['b'];
-                }
-    				    if (isset($field["852"]['subfields']['i'])) {
-    					    $result["identifier"][] = $field["852"]['subfields']['i'];
-    				    }
-                if (isset($field["852"]['subfields']['k'])) {
-    					    $result["identifier"][] = $field["852"]['subfields']['k'];
-    				    }
-                if (isset($field["852"]['subfields']['h'])) {
-    					    $result["identifier"][] = $field["852"]['subfields']['h'];
-    				    }
-                if (isset($field["852"]['subfields']['l'])) {
-    					    $result["identifier"][] = $field["852"]['subfields']['l'];
-    				    }
-                if (isset($field["852"]['subfields']['m'])) {
-    					    $result["identifier"][] = $field["852"]['subfields']['m'];
-    				    }
-            }*/
 
             //creator & contributor
             if (isset($field["700"])):
@@ -219,7 +194,7 @@ class Transformer{
                   $data .= " ".$field["700"]['subfields']['b'];
       			    }
       			    if (isset($field["700"]['subfields']['d'])) {
-      				    $data .=" ". $field["700"]['subfields']['d'];
+      				    $data .=" (". $field["700"]['subfields']['d'].")";
       			    }
 
   	            if ($field["700"]['subfields']['4']=="aut") {
