@@ -95,9 +95,10 @@
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Description'))):?>
+
+                <?php if($text = metadata('item', array('Dublin Core','Date'))):?>
                   <div class="element">
-                      <h3><?php echo __('Description');?></h3>
+                      <h3><?php echo __('Date');?></h3>
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
@@ -107,6 +108,13 @@
                   <div class="element">
                       <h3><?php echo __('Language');?></h3>
                       <div class="element-text"><?php echo locale_get_display_language($text);?></div>
+                  </div>
+                <?php endif;?>
+
+                <?php if($text = metadata('item', array('Dublin Core','Description'))):?>
+                  <div class="element">
+                      <h3><?php echo __('Description');?></h3>
+                      <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
 
@@ -127,12 +135,7 @@
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
-                <?php if($text = metadata('item', array('Dublin Core','Date'))):?>
-                  <div class="element">
-                      <h3><?php echo __('Date');?></h3>
-                      <div class="element-text"><?php echo $text;?></div>
-                  </div>
-                <?php endif;?>
+
 
                 <!-- subjects -->
                 <?php if($text = metadata('item', array('Dublin Core','Subject'))):?>

@@ -157,7 +157,7 @@ class Transformer{
     			        $data = $field["300"]['subfields']['a'];
 
     			        if (isset($field["300"]['subfields']['g'])) {
-    				        $data .= " ".$field["300"]['subfields']['g'];
+    				        $data .= " (".$field["300"]['subfields']['g'].")";
     			        }
 
     			        $result["description"][]=$data;
