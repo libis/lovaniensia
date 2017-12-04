@@ -22,7 +22,7 @@
     <!-- Stylesheets -->
     <?php
     queue_css_file(array('iconfonts', 'app'));
-    queue_css_url('https://fonts.googleapis.com/css?family=Droid+Serif:400,700|Raleway:100,300,400,600,700');
+    queue_css_url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700|Raleway:100,300,400,600,700');
     echo head_css();
     echo theme_header_background();
 

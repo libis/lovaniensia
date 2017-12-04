@@ -6288,7 +6288,7 @@ html {
 
 body {
   height: 100%;
-  font-family: "Droid Serif", serif;
+  font-family: "Noto Serif", serif;
   background: white;
   font-size: 1.0rem;
 }
@@ -6302,7 +6302,7 @@ a:hover {
 }
 
 p {
-  font-family: "Droid Serif", serif;
+  font-family: "Noto Serif", serif;
 }
 
 .container-fluid {
@@ -6344,7 +6344,7 @@ header {
   font-weight: 100;
   font-size: 2.2rem;
   padding: 0.1rem 0 0 0;
-  font-family: "Droid Serif", serif;
+  font-family: "Noto Serif", serif;
 }
 
 @media (max-width: 543px) {
@@ -7279,7 +7279,7 @@ section.news .news-item:last-of-type {
 .exhibit-show-section .page .top h6,
 .simple-page-section .page .top h6 {
   font-size: 1.2rem;
-  font-family: "Droid Serif", serif;
+  font-family: "Noto Serif", serif;
 }
 
 .exhibit-show-section .page .top h6 a,
