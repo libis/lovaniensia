@@ -6793,7 +6793,6 @@ header {
   font-size: 1.3rem;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
-  text-transform: uppercase;
   padding: 2rem;
   background: rgba(0, 89, 96, 0.4);
   margin-bottom: 0;
@@ -7068,7 +7067,6 @@ section.news .news-item:last-of-type {
 
 .metadata-section h1 {
   font-weight: 500;
-  text-transform: uppercase;
   margin-bottom: 2rem;
   font-size: 1.8rem;
   line-height: 1.5;
