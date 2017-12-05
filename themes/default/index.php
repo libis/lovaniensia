@@ -4,7 +4,7 @@
         <div class="row">
             <div class="intro col-md-12">
               <div class='row'>
-                <div class="intro-content col-xs-12 offset-md-1 offset-lg-1 col-md-7 col-lg-7">
+                <div class="intro-content col-xs-12 offset-md-1 offset-lg-2 col-md-7 col-lg-6">
                     <?php echo libis_get_simple_page_content("Info");?>
                 </div>
                 <div class="more col-xs-12 col-md-4 col-xl-4">
