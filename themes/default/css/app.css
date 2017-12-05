@@ -6617,7 +6617,7 @@ header {
 .search {
   color: white;
   background: rgba(0, 89, 96, 0.9);
-  padding: 2.5rem 0 2.5rem 0;
+  padding: 2rem 0 2rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -6637,8 +6637,8 @@ header {
   color: white;
   border: none;
   margin: 0 0 0 0;
-  line-height: 2;
-  padding: 0 1rem;
+  line-height: 3;
+  padding: 0 0.5rem;
   display: inline-block;
 }
 
@@ -6650,7 +6650,7 @@ header {
 
 .search #solr-search-form button i {
   vertical-align: middle;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
 }
 
 @media (max-width: 767px) {
@@ -6667,6 +6667,7 @@ header {
   font-size: 1.1rem;
   line-height: 1;
   color: rgba(51, 51, 51, 0.8);
+  border: 1px solid rgba(0, 89, 96, 0.9);
 }
 
 .search .filter {
