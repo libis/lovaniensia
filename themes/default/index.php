@@ -88,11 +88,15 @@
        </div>
      </div>
 </section>
+<?php
+  $items = get_records('Item', array('type'=>'News','sort_field' => 'added', 'sort_dir' => 'd'), 3);
+  if ($items) :
+?>
 <section class="news">
   <div class="container">
       <div class="row">
         <?php
-          echo libis_get_news();
+          echo libis_get_news($items);
         ?>
       </div>
       <div class="row more-news">
@@ -102,6 +106,7 @@
       </div>
   </div>
 </section>
+<?php endif;?>
 <script>
     jQuery(document).ready(function(){
       jQuery('.carousel-lov').slick({

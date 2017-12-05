@@ -36,24 +36,22 @@ function libis_get_featured_items(){
   $items = get_records('items',array('featured' => true),5);
 }
 
-function libis_get_news($tag = "")
+function libis_get_news($items)
 {
-    $items = get_records('Item', array('type'=>'News','sort_field' => 'added', 'sort_dir' => 'd'), 3);
-    if (!$items) : ?>
-    <div class="col-md-12 col-lg-4 news-item">
-        <p>Er is geen recent nieuws.</p>
-    </div>
-    <?php endif; ?>
-    <?php foreach ($items as $item) :?>
-      <div class="col-md-12 col-lg-4 news-item">
-          <h6>News <span><?php echo metadata($item, array('Dublin Core', 'Date')); ?></span></h6>
-          <h3><?php echo metadata($item, array('Dublin Core', 'Title')); ?></h3>
-          <p class="description">
-            <?php echo metadata($item, array('Dublin Core', 'Description'), array('snippet'=>250)); ?>
-          </p>
-          <p class="read-more">
-            <?php echo link_to_item('Read more', array(), 'show', $item); ?>
-          </p>
-      </div>
-    <?php endforeach;
+    //$items = get_records('Item', array('type'=>'News','sort_field' => 'added', 'sort_dir' => 'd'), 3);
+    if ($items): ?>
+      <?php $col = 12 / sizeof($items);?>
+      <?php foreach ($items as $item) :?>
+        <div class="col-md-12 col-lg-<?php echo $col;?> news-item">
+            <h6>News <span><?php echo metadata($item, array('Dublin Core', 'Date')); ?></span></h6>
+            <h3><?php echo metadata($item, array('Dublin Core', 'Title')); ?></h3>
+            <p class="description">
+              <?php echo metadata($item, array('Dublin Core', 'Description'), array('snippet'=>250)); ?>
+            </p>
+            <p class="read-more">
+              <?php echo link_to_item('Read more', array(), 'show', $item); ?>
+            </p>
+        </div>
+      <?php endforeach;?>
+    <?php endif;
 }

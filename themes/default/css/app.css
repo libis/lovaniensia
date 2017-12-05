@@ -6565,6 +6565,9 @@ header {
     font-size: 1rem;
     text-shadow: none;
   }
+  .jumbotron .intro-content p:last-of-type {
+    margin-bottom: none;
+  }
 }
 
 .jumbotron .more {
@@ -7127,9 +7130,9 @@ section.news .news-item:last-of-type {
 
 @media (max-width: 767px) {
   .metadata-section .element-set {
-    padding: 1rem;
+    padding: 0rem;
     font-size: 0.9rem;
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
     border: none;
   }
 }
