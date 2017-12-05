@@ -6374,7 +6374,7 @@ header {
 
 .public-nav .navbar-nav li {
   float: left;
-  line-height: 3.4;
+  height: 3.4;
   background: rgba(0, 89, 96, 0.7);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -6384,6 +6384,7 @@ header {
   font-weight: normal;
   margin: 0 15px;
   font-size: 0.7rem;
+  line-height: 3.4rem;
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
 }

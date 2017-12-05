@@ -20,7 +20,7 @@
 <section class="search">
     <div id="content" class='container' role="main" tabindex="-1">
         <div class="row">
-            <div class="features col-md-10 offset-md-1 col-xs-12">
+            <div class="features offset-md-1 offset-lg-2 col-md-10 col-lg-8 col-xs-12">
               <form id="solr-search-form" action="<?php echo url("solr-search");?>">
                 <div class="input-group">
                   <input type="text" class="form-control" name="q" placeholder="Search the Collection" aria-label="Search for...">
