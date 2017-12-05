@@ -6539,6 +6539,13 @@ header {
   padding-bottom: 4rem;
 }
 
+@media (max-width: 767px) {
+  .jumbotron .container {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+  }
+}
+
 .jumbotron p {
   font-family: "Raleway", sans-serif;
 }
@@ -6613,7 +6620,7 @@ header {
 
 @media (max-width: 767px) {
   .search {
-    padding: 3rem 0 3rem 0;
+    padding: 2rem 0 2rem 0;
   }
 }
 
@@ -6760,13 +6767,13 @@ header {
 
 @media (max-width: 991px) {
   .home .features {
-    padding: 4rem 0 4rem 2rem;
+    padding: 2rem 1rem;
   }
 }
 
 @media (max-width: 767px) {
   .home .features {
-    padding: 0 0 2rem 0;
+    padding: 0 2rem 2rem 2rem;
   }
 }
 
@@ -6803,9 +6810,9 @@ header {
   color: white;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .home .features .card h1 {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -6858,7 +6865,7 @@ header {
 @media (max-width: 767px) {
   .home .features .card .card-block {
     background: rgba(51, 51, 51, 0.1);
-    padding: 1rem 1rem;
+    padding: 2rem;
   }
   .home .features .card .card-block h3 {
     float: none;
@@ -6901,9 +6908,15 @@ header {
   padding-bottom: 4rem;
 }
 
+@media (max-width: 991px) {
+  .home .image-lov {
+    padding: 2rem 1rem;
+  }
+}
+
 @media (max-width: 767px) {
   .home .image-lov {
-    padding: 2rem 0;
+    padding: 2rem;
   }
 }
 
@@ -7032,19 +7045,12 @@ section.news .news-item:last-of-type {
 
 .item-section .image-row {
   overflow: hidden;
-  padding: 1rem 1rem;
-  background: rgba(0, 89, 96, 0.3);
+  background: white;
 }
 
 .item-section .image-row iframe {
   width: 100%;
   min-height: 700px;
-}
-
-@media (max-width: 767px) {
-  .item-section .image-row iframe {
-    min-height: 400px;
-  }
 }
 
 .item-section .image-row img {
@@ -7062,7 +7068,7 @@ section.news .news-item:last-of-type {
 
 .metadata-section .content {
   background: #fff;
-  padding: 3rem 0;
+  padding: 2rem 0;
 }
 
 .metadata-section h1 {
@@ -7071,6 +7077,19 @@ section.news .news-item:last-of-type {
   font-size: 1.8rem;
   line-height: 1.5;
   font-family: "Raleway", sans-serif;
+}
+
+@media (max-width: 991px) {
+  .metadata-section h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .metadata-section h1 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
 }
 
 .metadata-section h2 {
@@ -7106,9 +7125,24 @@ section.news .news-item:last-of-type {
   margin-bottom: 3rem;
 }
 
+@media (max-width: 767px) {
+  .metadata-section .element-set {
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    border: none;
+  }
+}
+
 .metadata-section .element {
   margin-bottom: 20px;
   clear: both;
+}
+
+@media (max-width: 767px) {
+  .metadata-section .element {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .metadata-section .element h3 {
@@ -7187,6 +7221,7 @@ section.news .news-item:last-of-type {
   height: 50px;
   color: rgba(255, 255, 255, 0.7);
   font-family: "Raleway", sans-serif;
+  overflow: hidden;
 }
 
 .breadcrumbs-section .breadcrumbs #simple-pages-breadcrumbs span {
@@ -7548,10 +7583,6 @@ section.search-solr h1 {
 }
 
 @media (max-width: 767px) {
-  .solr-section-results .result .solr-metadata {
-    background: rgba(51, 51, 51, 0.1);
-    padding: 1rem 1rem;
-  }
   .solr-section-results .result .solr-metadata h3 {
     float: none;
     width: 100%;
@@ -7718,6 +7749,7 @@ footer .logo-row img {
   height: 55px;
   margin-bottom: 10px;
   margin-right: 20px;
+  max-width: 100%;
   vertical-align: top;
 }
 
