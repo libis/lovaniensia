@@ -83,6 +83,11 @@
                 <?php elseif($text = metadata($item, array('Dublin Core','Relation'),array("index"=>"0"))):?>
                     <a class="images" href="<?php echo $text;?>"><i class="material-icons">&#xE3B6;</i> Images</a>
                 <?php endif; ?>
+                <?php if($manifest):?>
+                <a target="_blank" href="<?php echo $manifest;?>">
+                    <img src="http://manifests.britishart.yale.edu/logo-iiif.png" alt="IIIF Manifest">
+                </a>
+                <? endif;?>
               </div>
               <div class="element-set">
                 <!-- creators -->
@@ -179,11 +184,7 @@
                 <?php endif;?>
 
               </div>
-              <?php if($manifest):?>
-              <a target="_blank" href="<?php echo $manifest;?>">
-                  <img src="http://manifests.britishart.yale.edu/logo-iiif.png" alt="IIIF Manifest">
-              </a>
-              <? endif;?>
+
 
           <?php else:?>
               <p class="date"><?php echo metadata('item', array('Dublin Core', 'Date')); ?></p>
