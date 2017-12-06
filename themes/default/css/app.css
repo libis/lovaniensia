@@ -7127,7 +7127,7 @@ section.news .news-item:last-of-type {
   border-left: 1px solid #eeeeee;
   padding: 0 2rem;
   margin-top: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 767px) {

@@ -20,6 +20,7 @@
 <?php
   $mirador = metadata($item, array('Item Type Metadata','Rosetta ID'));
   $universal = metadata($item, array('Dublin Core','Relation'),array("all" => true));
+  $manifest = "";
 ?>
 <?php if ($mirador || $universal): ?>
   <section class="item-section general-section">
@@ -28,9 +29,11 @@
         <div class="col-xs-12">
           <div class="image-row">
             <?php if($mirador):?>
+              <?php $manifest = "http://services.libis.be/m2/manifest/".$mirador."manifest.json";?>
               <iframe scrolling="no" src="http://resolver.libis.be/<?php echo $mirador;?>/representation"></iframe>
             <?php else: ?>
               <iframe src="<?php echo $universal[0];?>"></iframe>
+              <?php $manifest = $universal[0];?>
             <?php endif;?>
           </div>
         </div>
@@ -174,7 +177,13 @@
                       <div class="element-text"><?php echo $text;?></div>
                   </div>
                 <?php endif;?>
+
               </div>
+              <?php if($manifest):?>
+              <a target="_blank" href="<?php echo $manifest;?>">
+                  <img src="http://manifests.britishart.yale.edu/logo-iiif.png" alt="IIIF Manifest">
+              </a>
+              <? endif;?>
 
           <?php else:?>
               <p class="date"><?php echo metadata('item', array('Dublin Core', 'Date')); ?></p>
@@ -189,8 +198,11 @@
             </div>
             <?php endif;?>
           </div>-->
+
+
         </div>
     </div>
+
 </section>
 
 <?php echo foot(); ?>
