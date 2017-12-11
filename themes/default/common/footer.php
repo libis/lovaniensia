@@ -30,6 +30,7 @@
                 <div class="row logo-row">
                   <div class="col-xs-12">
                     <div class="logos">
+                    <a href="https://uclouvain.be/en"><img class="ucl" src="<?php echo img("UCL_web.jpg");?>"></a>
                     <a href="https://uclouvain.be/en/libraries"><img class="ucl" src="<?php echo img("ucl.jpg");?>"></a>
                     <a href="https://bib.kuleuven.be/english/"><img src="<?php echo img("KULEUVEN.png");?>"></a>
                     <a href="http://libis.be"><img src="<?php echo img("libis_gray.png");?>"></a>
