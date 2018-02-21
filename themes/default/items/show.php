@@ -29,7 +29,7 @@
         <div class="col-xs-12">
           <div class="image-row">
             <?php if($mirador):?>
-              <?php $manifest = "http://services.libis.be/m2/manifest/".$mirador."manifest.json";?>
+              <?php $manifest = "http://services.libis.be/m2/manifest/".$mirador;?>
               <iframe scrolling="no" src="http://resolver.libis.be/<?php echo $mirador;?>/representation"></iframe>
             <?php else: ?>
               <iframe src="<?php echo $universal[0];?>"></iframe>
