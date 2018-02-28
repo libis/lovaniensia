@@ -95,7 +95,20 @@ class Importer{
             endif;
         endif;
 
-        //handle metadata
+        //delete old Metadata
+        if(!$new_item):
+          foreach($this->mapping as $map_element):
+            $element = get_db()->getTable('Element')->findByElementSetNameAndElementName($map_element['set'], $map_element['name']);
+            if($element != null):
+              $existing_texts = get_db()->getTable('ElementText')->findBy(array('record_id' => $item->id, 'element_id' => $element->id));
+              foreach($existing_texts as $existing_text):
+                  $existing_text->delete();
+              endforeach;
+            endif;
+          endforeach;
+        endif;
+
+        //handle new metadata
         foreach($record_metadata as $key=>$metadata):
             if(isset($this->mapping[$key])):
                 $element_name = $this->mapping[$key]['name'];
@@ -103,32 +116,21 @@ class Importer{
                 $element_texts = explode('$$',$metadata);
                 $element = get_db()->getTable('Element')->findByElementSetNameAndElementName($element_set, $element_name);
             else:
-                $element = null;
+                $element == null;
             endif;
 
+            //delete if exists
             if($element != null):
-                //delete if exists
-                if(!$new_item):
-                    $existing_texts = get_db()->getTable('ElementText')->findBy(array('record_id' => $item->id, 'element_id' => $element->id));
-                    foreach($existing_texts as $existing_text):
-                        $existing_text->delete();
-                    endforeach;
-                endif;
-
-                foreach($element_texts as $text):
+              foreach($element_texts as $text):
                     $element_text = new ElementText();
                     $element_text->record_id = $item->id;
                     $element_text->record_type = 'Item';
                     $element_text->element_id = $element->id;
                     $element_text->html = 0;
-                    if($element->id != 43):
-                      $text = utf8_decode($text);
-                    endif;
-                    $element_text->text = $text;
+                    $element_text->text = utf8_decode($text);
                     $element_text->save();
                 endforeach;
             endif;
-            $element == null;
         endforeach;
 
         //save item (again) to force reindexing if solr is installed
