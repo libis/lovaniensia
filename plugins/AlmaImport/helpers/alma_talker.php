@@ -101,6 +101,7 @@ class AlmaTalker{
 
     public function get_holdings(){
         $links = $this->get_holdings_links();
+        $records = array();
 
         foreach($links as $link):
             $holding = $this->alma_curl($link."?apikey=".$this->key);
