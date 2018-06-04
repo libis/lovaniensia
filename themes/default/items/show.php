@@ -183,6 +183,17 @@
                   </div>
                 <?php endif;?>
 
+                <?php if($text = metadata('item', array('Item Type Metadata','External manuscript'),array("all"=>true))):?>
+                  <div class="element">
+                      <h3><?php echo __('Other digitised copies');?></h3>
+                      <ul>
+                      <?php foreach($text as $manu):?>
+                        <li class="element-text"><?php echo $text;?></li>
+                      <?php endforeach;?>
+                      </ul>
+                  </div>
+                <?php endif;?>
+
               </div>
 
 

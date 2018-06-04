@@ -151,7 +151,9 @@ class Transformer{
                             preg_match('#\((.*?)\)#', $label, $match);
                             if($match):
                               $label = "(".$match[1].")";
-                            endif;  
+                            else:
+                              $label = "";  
+                            endif;
                         }
                         if (isset($field["856"]['subfields']['z'])) {
                             $name = $field["856"]['subfields']['z'];

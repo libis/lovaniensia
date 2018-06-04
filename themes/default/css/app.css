@@ -7502,6 +7502,12 @@ section.search-solr h1 {
   }
 }
 
+.solr-section-results .dummy {
+  width: 100%;
+  height: 200px;
+  background: #eee;
+}
+
 .solr-section-results .solr-results {
   padding: 2rem;
 }
