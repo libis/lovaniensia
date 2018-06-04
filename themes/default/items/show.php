@@ -188,7 +188,7 @@
                       <h3><?php echo __('Other digitised copies');?></h3>
                       <ul>
                       <?php foreach($text as $manu):?>
-                        <li class="element-text"><?php echo $text;?></li>
+                        <li class="element-text"><?php echo $manu;?></li>
                       <?php endforeach;?>
                       </ul>
                   </div>
