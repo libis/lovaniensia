@@ -7173,8 +7173,18 @@ section.news .news-item:last-of-type {
   overflow: hidden;
 }
 
-.metadata-section .element li a {
-  padding-bottom: 0.2rem;
+.metadata-section .element ul {
+  list-style: circle;
+  padding-left: 1rem;
+  overflow: hidden;
+}
+
+.metadata-section .element ul li {
+  margin-bottom: 0.3rem;
+}
+
+.metadata-section .element ul li a {
+  padding-bottom: 0.1rem;
   border-bottom: 1px solid rgba(0, 89, 96, 0.5);
 }
 
