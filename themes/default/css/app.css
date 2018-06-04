@@ -7250,6 +7250,7 @@ section.news .news-item:last-of-type {
   color: rgba(255, 255, 255, 0.7);
   font-family: "Raleway", sans-serif;
   overflow: hidden;
+  font-size: 0.9rem;
 }
 
 .breadcrumbs-section .breadcrumbs #simple-pages-breadcrumbs span {
