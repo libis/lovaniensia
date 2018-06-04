@@ -152,14 +152,14 @@ class Transformer{
                             if($match):
                               $label = "(".$match[1].")";
                             else:
-                              $label = "";  
+                              $label = "";
                             endif;
                         }
                         if (isset($field["856"]['subfields']['z'])) {
                             $name = $field["856"]['subfields']['z'];
                         }
 
-                        $result['external manuscript'][]= "<a href='".$url."'>".$name." ".$label."</a>";
+                        $result['external manuscript'][]= "<a target='_blank' href='".$url."'>".$name." ".$label."</a>";
                     }
                 endif;
             endif;
