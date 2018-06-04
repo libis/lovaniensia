@@ -141,6 +141,25 @@ class Transformer{
                         $result["pid"][] = $pid;
                     }
                 endif;
+                //external source
+                if($field["856"]["ind1"]=='4'&&$field["856"]["ind2"]=='1'):
+                    if (isset($field["856"]['subfields']['u'])) {
+                        $url = $field["856"]['subfields']['u'];
+                        $label = "";
+                        if (isset($field["856"]['subfields']['y'])) {
+                            $label = $field["856"]['subfields']['y'];
+                            preg_match('#\((.*?)\)#', $label, $match);
+                            if($match):
+                              $label = "(".$match[1].")";
+                            endif;  
+                        }
+                        if (isset($field["856"]['subfields']['z'])) {
+                            $name = $field["856"]['subfields']['z'];
+                        }
+
+                        $result['external manuscript'][]= "<a href='".$url."'>".$name." ".$label."</a>";
+                    }
+                endif;
             endif;
 
             //date (period for display)
