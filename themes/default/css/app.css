@@ -7173,6 +7173,11 @@ section.news .news-item:last-of-type {
   overflow: hidden;
 }
 
+.metadata-section .element li a {
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid rgba(0, 89, 96, 0.5);
+}
+
 .metadata-section .links {
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
