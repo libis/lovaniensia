@@ -35,7 +35,7 @@
                     <a href="https://bib.kuleuven.be/english/"><img src="<?php echo img("KULEUVEN.png");?>"></a>
                     <a href="http://libis.be"><img src="<?php echo img("libis_gray.png");?>"></a>
                     <a href="http://www.cultuurculture.be/"><img src="<?php echo img("cultuur-culture.jpg");?>"></a>
-                    <a href="http://www.cultuurculture.be/"><img src="<?php echo img("flanders.png");?>"></a>
+                    <a href="https://cjsm.be/"><img src="<?php echo img("flanders.png");?>"></a>
                     <a href="http://www.federation-wallonie-bruxelles.be/"><img src="<?php echo img("logo-wallonie.png");?>"></a>
                   </div>
                 </div>
