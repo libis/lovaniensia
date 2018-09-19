@@ -74,7 +74,7 @@
 
               <div class="links">
                 <?php if($text = metadata($item, array('Item Type Metadata','LIMO'))):?>
-                    <a class="catalogue" href="<?php echo $text;?>"><i class="material-icons">&#xE89E;</i> Catalogue</a>
+                    <a class="catalogue" href="<?php echo $text;?>&builder=primo_opensearch&host=limo.libis.be&sort=title&step=200"><i class="material-icons">&#xE89E;</i> Catalogue</a>
                 <?php elseif($text = metadata($item, array('Dublin Core','Identifier'),array("index"=>"2"))):?>
                     <a class="images" href="<?php echo $text;?>"><i class="material-icons">&#xE89E;</i> Catalogue</a>
                 <?php endif; ?>
