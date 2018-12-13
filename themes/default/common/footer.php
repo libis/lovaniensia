@@ -12,7 +12,7 @@
                       <b>KU Leuven Libraries Special Collections</b><br>
                       Mgr. Ladeuzeplein 21 box 5591 |
                       3000 Leuven<br>
-                      bijzonderecollecties@kuleuven.be<br>
+                      <a href="https://www.kuleuven.be/wieiswie/en/person/ue711939">Bijzondere Collecties</a><br>
                       tel.+32 (0)16 32 46 24
                     </div>
                   </div>
@@ -22,7 +22,8 @@
                       Réserve patrimoniale</b><br>
                       Grand-Place 45 |
                       1348 Louvain-la-Neuve<br>
-                      respat-sceb@uclouvain.be<br>
+                      <a href="https://uclouvain.be/fr/bibliotheques/respat/equipe-et-contacts.html">RESPAT</a>
+                      <br>
                       tel. +32 (0)10 47 81 87
                     </div>
                   </div>
