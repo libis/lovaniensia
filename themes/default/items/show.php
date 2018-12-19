@@ -18,8 +18,14 @@
   </div>
 </div>
 <?php
+  $iiif= '';
   $mirador = metadata($item, array('Item Type Metadata','Rosetta ID'));
   $universal = metadata($item, array('Dublin Core','Relation'),array("all" => true));
+  foreach($universal as $row):
+    if (strpos($row, 'IIIF') !== false) {
+      $iiif = $row;
+    }
+  endforeach;
   $manifest = "";
 ?>
 <?php if ($mirador || $universal): ?>
@@ -32,8 +38,8 @@
               <?php $manifest = "http://services.libis.be/m2/manifest/".$mirador;?>
               <iframe scrolling="no" src="http://resolver.libis.be/<?php echo $mirador;?>/representation"></iframe>
             <?php else: ?>
-              <iframe src="<?php echo $universal[0];?>"></iframe>
-              <?php $manifest = $universal[0];?>
+              <iframe src="<?php echo $iiif;?>"></iframe>
+              <?php $manifest = $iiif;?>
             <?php endif;?>
           </div>
         </div>
