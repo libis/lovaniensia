@@ -191,7 +191,7 @@
 
                 <?php if($text = metadata('item', array('Item Type Metadata','External manuscript'),array("all"=>true))):?>
                   <div class="element">
-                      <h3><?php echo __('Other digitised copies');?></h3>
+                      <h3><?php echo __('Externally digitised copies');?></h3>
                       <ul class="element-text">
                       <?php foreach($text as $manu):?>
                         <li ><?php echo $manu;?></li>
