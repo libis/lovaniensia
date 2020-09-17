@@ -35,7 +35,7 @@
         <div class="col-xs-12">
           <div class="image-row">
             <?php if($mirador):?>
-              <?php $manifest = "http://services.libis.be/m2/manifest/".$mirador;?>
+              <?php $manifest = "https://lib.is/".$mirador.'/manifest';?>
               <iframe scrolling="no" src="http://resolver.libis.be/<?php echo $mirador;?>/representation"></iframe>
             <?php else: ?>
               <iframe src="<?php echo $iiif;?>"></iframe>
