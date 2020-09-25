@@ -194,6 +194,8 @@ class Transformer{
               //Librabry
               if($label[3] == "BIBC"):
                 $source .= " Special Collections";
+              elseif($label[3] == "BCOL"):
+                $source .= " Special Collections";
               elseif($label[3] == "GBIB"):
                 $source .= " Maurits Sabbe Library";
               endif;
