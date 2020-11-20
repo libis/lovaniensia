@@ -189,6 +189,17 @@
                   </div>
                 <?php endif;?>
 
+                <?php if($text = metadata('item', array('Dublin Core','Has Version'),array("all"=>true))):?>
+                  <div class="element">
+                      <h3><?php echo __('Copies');?></h3>
+                      <ul class="element-text">
+                      <?php foreach($text as $cop):?>
+                        <li ><?php echo $cop;?></li>
+                      <?php endforeach;?>
+                      </ul>
+                  </div>
+                <?php endif;?>
+
                 <?php if($text = metadata('item', array('Item Type Metadata','External manuscript'),array("all"=>true))):?>
                   <div class="element">
                       <h3><?php echo __('Externally digitised copies');?></h3>

@@ -164,6 +164,23 @@ class Transformer{
                 endif;
             endif;
 
+            if(isset($field["852"])){
+                if (isset($field["852"]['subfields']['b'])) {
+                  if ($field["852"]['subfields']['b'] == 'BCOL' || $field["852"]['subfields']['b'] == 'GBIB') {
+                    if($field["852"]['subfields']['b'] == "BCOL"):
+                      $value = "KU Leuven Libraries, Special Collections";
+                    elseif($label[3] == "GBIB"):
+                      $value = "KU Leuven Libraries, Maurits Sabbe Library";
+                    endif;
+                  }
+
+                  if (isset($field["852"]['subfields']['khilm'])) {
+  			             $value .= ','.$field["852"]['subfields']['khilm'];
+                  }
+                  $result["hasVersion"][] = $value;
+                }
+            }
+
             //date (period for display)
             if(isset($field["264"])):
                 if(isset($field["264"]['subfields']['c'])):
