@@ -68,7 +68,7 @@ class Transformer{
         echo '<pre>';
         var_dump($fields);
         echo '</pre>';
-        
+
         foreach($fields as $field):
             //mms id & LIMO link
             if(isset($field["001"])):
@@ -221,6 +221,7 @@ class Transformer{
             //source and identifiers
             if(isset($field["representation"])){
               $label = $field["representation"]["label"];
+              $label = ltrim($label);
               $label = explode(" ", $label);
               //KU Leuven Libraries
               $source = $label[0]." ".$label[1]." ".$label[2].",";
