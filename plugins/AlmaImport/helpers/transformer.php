@@ -64,7 +64,6 @@ class Transformer{
     }
 
     public function transform($fields,$representation){
-      var_dump($fields);
         $result="";
 
         foreach($fields as $field):
@@ -175,15 +174,15 @@ class Transformer{
                     endif;
 
                     if (isset($field["852"]['subfields']['k'])) {
-    			             $value .= ','.$field["852"]['subfields']['k'];
+    			             $value .= ', '.$field["852"]['subfields']['k'];
                     }elseif(isset($field["852"]['subfields']['h'])) {
-    			             $value .= ','.$field["852"]['subfields']['h'];
+    			             $value .= ', '.$field["852"]['subfields']['h'];
                     }elseif(isset($field["852"]['subfields']['i'])) {
-    			             $value .= ','.$field["852"]['subfields']['i'];
+    			             $value .= ', '.$field["852"]['subfields']['i'];
                     }elseif(isset($field["852"]['subfields']['l'])) {
-    			             $value .= ','.$field["852"]['subfields']['l'];
+    			             $value .= ', '.$field["852"]['subfields']['l'];
                     }elseif(isset($field["852"]['subfields']['m'])) {
-    			             $value .= ','.$field["852"]['subfields']['m'];
+    			             $value .= ', '.$field["852"]['subfields']['m'];
                     }
 
                     $result["hasVersion"][] = $value;
