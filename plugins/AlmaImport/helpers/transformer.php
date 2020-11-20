@@ -64,6 +64,7 @@ class Transformer{
     }
 
     public function transform($fields,$representation){
+      var_dump($fields);
         $result="";
 
         foreach($fields as $field):
@@ -178,7 +179,7 @@ class Transformer{
                     }
 
                     $result["hasVersion"][] = $value;
-                  }               
+                  }
 
                 }
             }
