@@ -172,12 +172,14 @@ class Transformer{
                     elseif($label[3] == "GBIB"):
                       $value = "KU Leuven Libraries, Maurits Sabbe Library";
                     endif;
-                  }
 
-                  if (isset($field["852"]['subfields']['khilm'])) {
-  			             $value .= ','.$field["852"]['subfields']['khilm'];
-                  }
-                  $result["hasVersion"][] = $value;
+                    if (isset($field["852"]['subfields']['khilm'])) {
+    			             $value .= ','.$field["852"]['subfields']['khilm'];
+                    }
+
+                    $result["hasVersion"][] = $value;
+                  }               
+
                 }
             }
 
