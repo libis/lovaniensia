@@ -170,12 +170,20 @@ class Transformer{
                   if ($field["852"]['subfields']['b'] == 'BCOL' || $field["852"]['subfields']['b'] == 'GBIB') {
                     if($field["852"]['subfields']['b'] == "BCOL"):
                       $value = "KU Leuven Libraries, Special Collections";
-                    elseif($label[3] == "GBIB"):
+                    elseif($field["852"]['subfields']['b'] == "GBIB"):
                       $value = "KU Leuven Libraries, Maurits Sabbe Library";
                     endif;
 
-                    if (isset($field["852"]['subfields']['khilm'])) {
-    			             $value .= ','.$field["852"]['subfields']['khilm'];
+                    if (isset($field["852"]['subfields']['k'])) {
+    			             $value .= ','.$field["852"]['subfields']['k'];
+                    }elseif(isset($field["852"]['subfields']['h'])) {
+    			             $value .= ','.$field["852"]['subfields']['h'];
+                    }elseif(isset($field["852"]['subfields']['i'])) {
+    			             $value .= ','.$field["852"]['subfields']['i'];
+                    }elseif(isset($field["852"]['subfields']['l'])) {
+    			             $value .= ','.$field["852"]['subfields']['l'];
+                    }elseif(isset($field["852"]['subfields']['m'])) {
+    			             $value .= ','.$field["852"]['subfields']['m'];
                     }
 
                     $result["hasVersion"][] = $value;
