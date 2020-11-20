@@ -65,7 +65,10 @@ class Transformer{
 
     public function transform($fields,$representation){
         $result="";
-
+        echo '<pre>';
+        var_dump($fields);
+        echo '</pre>';
+        
         foreach($fields as $field):
             //mms id & LIMO link
             if(isset($field["001"])):
