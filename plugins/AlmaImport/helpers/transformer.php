@@ -237,7 +237,9 @@ class Transformer{
               //Sigel not needed
               $result['source'][] = $source;
 
-              $result["identifier"][] = $label[5];
+              $temp = array_slice($label,4);
+
+              $result["identifier"][] = implode(' ',$temp);
             }
 
             //creator & contributor
