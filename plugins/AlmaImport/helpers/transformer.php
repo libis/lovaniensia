@@ -239,7 +239,7 @@ class Transformer{
 
               $temp = array_slice($label,4);
 
-              $result["identifier"][] = implode(' ',$temp);
+              $result["identifier"][] = mb_convert_encoding(implode(' ',$temp), 'UTF-8', 'HTML-ENTITIES');
             }
 
             //creator & contributor
