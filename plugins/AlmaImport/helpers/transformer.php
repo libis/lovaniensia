@@ -237,7 +237,7 @@ class Transformer{
               //Sigel not needed
               $result['source'][] = $source;
 
-              $temp = array_slice($label,4);
+              $temp = array_slice($label,5);
 
               $result["identifier"][] = mb_convert_encoding(implode(' ',$temp), 'UTF-8', 'HTML-ENTITIES');
             }
