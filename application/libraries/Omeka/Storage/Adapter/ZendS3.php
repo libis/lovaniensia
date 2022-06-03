@@ -22,6 +22,7 @@ class Omeka_Storage_Adapter_ZendS3 implements Omeka_Storage_Adapter_AdapterInter
     const ENDPOINT_OPTION = 'endpoint';
     const BUCKET_OPTION = 'bucket';
     const EXPIRATION_OPTION = 'expiration';
+    const FORCE_SSL = 'forceSSL';
 
     /**
      * @var Zend_Service_Amazon_S3
@@ -32,6 +33,11 @@ class Omeka_Storage_Adapter_ZendS3 implements Omeka_Storage_Adapter_AdapterInter
      * @var array
      */
     private $_options;
+
+    /**
+     * @var string
+     */
+    private $_force_ssl_display_endpoint;    
 
     /**
      * Set options for the storage adapter.
@@ -58,11 +64,15 @@ class Omeka_Storage_Adapter_ZendS3 implements Omeka_Storage_Adapter_AdapterInter
         $client = new Omeka_Http_Client;
         $client->setMaxRetries(3);
         Zend_Service_Amazon_S3::setHttpClient($client);
-        
+
         $this->_s3 = new Zend_Service_Amazon_S3($awsKey, $awsSecretKey);
         if (!empty($options[self::ENDPOINT_OPTION])) {
             $this->_s3->setEndpoint($options[self::ENDPOINT_OPTION]);
         }
+        
+        if (isset($this->_options[self::FORCE_SSL]) && (bool) $this->_options[self::FORCE_SSL] && parse_url($this->_s3->getEndpoint(), PHP_URL_SCHEME)=='http'){
+            $this->_force_ssl_display_endpoint = 'https:' . substr($this->_s3->getEndpoint(), 5);
+        }        
     }
 
     public function setUp()
@@ -93,13 +103,13 @@ class Omeka_Storage_Adapter_ZendS3 implements Omeka_Storage_Adapter_AdapterInter
         } else {
             $meta[Zend_Service_Amazon_S3::S3_ACL_HEADER] = Zend_Service_Amazon_S3::S3_ACL_PUBLIC_READ;
         }
-            
+
         $status = $this->_s3->putFileStream($source, $objectName, $meta);
 
-        if(!$status) {
+        if (!$status) {
             throw new Omeka_Storage_Exception('Unable to store file.');
         }
-        
+
         _log("Omeka_Storage_Adapter_ZendS3: Stored '$source' as '$objectName'.");
         unlink($source);
     }
@@ -114,10 +124,10 @@ class Omeka_Storage_Adapter_ZendS3 implements Omeka_Storage_Adapter_AdapterInter
     {
         $sourceObject = $this->_getObjectName($source);
         $destObject = $this->_getObjectName($dest);
-        
+
         $status = $this->_s3->moveObject($sourceObject, $destObject);
 
-        if(!$status) {
+        if (!$status) {
             throw new Omeka_Storage_Exception('Unable to move file.');
         }
 
@@ -132,10 +142,10 @@ class Omeka_Storage_Adapter_ZendS3 implements Omeka_Storage_Adapter_AdapterInter
     public function delete($path)
     {
         $objectName = $this->_getObjectName($path);
-            
+
         $status = $this->_s3->removeObject($objectName);
 
-        if(!$status) {
+        if (!$status) {
             if ($this->_s3->isObjectAvailable($objectName)) {
                 throw new Omeka_Storage_Exception('Unable to delete file.');
             } else {
@@ -155,19 +165,21 @@ class Omeka_Storage_Adapter_ZendS3 implements Omeka_Storage_Adapter_AdapterInter
      */
     public function getUri($path)
     {
-        $endpoint = $this->_s3->getEndpoint();
-        $object = urlencode($this->_getObjectName($path));
+        $endpoint = isset($this->_force_ssl_display_endpoint) ? $this->_force_ssl_display_endpoint : $this->_s3->getEndpoint();
+        $object = str_replace('%2F', '/', rawurlencode($this->_getObjectName($path)));
 
         $uri = "$endpoint/$object";
 
         if ($expiration = $this->_getExpiration()) {
-            $date = new Zend_Date();
-            $date->add($expiration, Zend_Date::MINUTE);
+            $timestamp = time();
+            $expirationSeconds = $expiration * 60;
+            $expires = $timestamp + $expirationSeconds;
+            // "Chunk" expirations to allow browser caching
+            $expires = $expires + $expirationSeconds - ($expires % $expirationSeconds);
 
             $accessKeyId = $this->_options[self::AWS_KEY_OPTION];
             $secretKey = $this->_options[self::AWS_SECRET_KEY_OPTION];
 
-            $expires = $date->getTimestamp();
             $stringToSign = "GET\n\n\n$expires\n/$object";
 
             $signature = base64_encode(

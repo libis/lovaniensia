@@ -51,6 +51,73 @@
             </div>
 
         </form>
+        <?php
+          $records = get_records(
+            'Item',
+            array(
+                'advanced' => array(
+                    array(
+                        'element_id' => 172,
+                        'type' => 'is not empty'
+                    )
+                )
+            ),
+            9999          
+          );
+          
+          $ids_array = array();
+          foreach($records as $record):
+              if(metadata($record,array("Item Type Metadata","MMS ID"))):
+                  $ids_array[] = metadata($record,array("Item Type Metadata","MMS ID"));
+              endif;    
+          endforeach;
+          
+        ?>
+        <div class="field">
+          <input type="submit" name="send" id="update-all" value="Update all"> 
+        </div>
+        <div class="happenings">
+
+        </div>
     </div>
 </div>
-<?php echo foot();
+<script>
+	jQuery( document ).ready(function() {
+    var arr = <?php echo json_encode($ids_array); ?>;
+    var i = 0;
+    var max = arr.length;
+    //console.log(arr);
+    jQuery('#update-all').click(function(event) {
+      
+            event.preventDefault();
+            jQuery(".happenings").html("Starting update, don't close this page<br><br>");
+            updateRecord();
+            
+    });
+
+    function updateRecord(){
+      jQuery.ajax({
+        url: '<?php echo url("alma-import/index/update/");?>'+ arr[i],
+        type: 'GET',
+        beforeSend: function() {
+        },
+        complete: function() {
+          i++;
+          if (i<max) {
+            updateRecord();
+          }
+          if(i == max){
+            jQuery('.happenings').append("<br>We're done, you can close this window!");
+          }
+          
+        },
+        success: function(result) {
+          jQuery('.happenings').append(result);          
+          console.log("Success ");
+        }
+      });
+    }
+
+    });
+	</script>
+<?php //echo foot();

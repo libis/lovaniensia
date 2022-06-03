@@ -11,7 +11,13 @@
                     <p><i class="material-icons">&#xE5C8;</i><a href="<?php echo url('en/about');?>">Read more</a></p>
                     <p><i class="material-icons">&#xE5C8;</i><a href="<?php echo url('fr/about');?>">En savoir plus</a></p>
                     <p><i class="material-icons">&#xE5C8;</i><a href="<?php echo url('nl/about');?>">Lees meer</a></p>
+                    <div class="logo" style="margin:1rem">
+                      <img class="" alt="logo" style="max-width:300px;" src="<?php echo img("LOGO.png");?>">
+                    </div>
                 </div>
+                
+
+
               </div>
             </div>
         </div>

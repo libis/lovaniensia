@@ -8,16 +8,21 @@ if ($fileTitle != '') {
 }
 $fileTitle = __('File #%s', metadata('file', 'id')) . $fileTitle;
 ?>
-<?php echo head(array('title' => $fileTitle, 'bodyclass'=>'files show primary-secondary')); ?>
+<?php echo head(array('title' => $fileTitle, 'bodyclass' => 'files show primary-secondary')); ?>
 
 <h1><?php echo $fileTitle; ?></h1>
 
 <div id="primary">
-    <?php echo file_markup($file, array('imageSize'=>'fullsize')); ?>
+    <?php echo file_markup($file, array('imageSize' => 'fullsize')); ?>
     <?php echo all_element_texts('file'); ?>
 </div>
 
 <aside id="sidebar">
+    <div id="item-metadata">
+        <h2><?php echo __('Item'); ?></h2>
+        <?php echo link_to_item(null, array(), 'show', $file->getItem()); ?>
+    </div><!-- end item-metadata -->
+
     <div id="format-metadata">
         <h2><?php echo __('Format Metadata'); ?></h2>
         <div id="original-filename" class="element">
@@ -36,7 +41,7 @@ $fileTitle = __('File #%s', metadata('file', 'id')) . $fileTitle;
         </div>
     </div><!-- end format-metadata -->
     
-    <div id="type-metadata" class="section">
+    <div id="type-metadata">
         <h2><?php echo __('Type Metadata'); ?></h2>
         <div id="mime-type-browser" class="element">
             <h3><?php echo __('Mime Type'); ?></h3>

@@ -1,14 +1,14 @@
 <?php
 /**
  * Omeka
- *
+ * 
  * @copyright Copyright 2007-2012 Roy Rosenzweig Center for History and New Media
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
 /**
  * Ingest URLs into Omeka.
- *
+ * 
  * @package Omeka\File\Ingest
  */
 class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
@@ -55,7 +55,6 @@ class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
      * @param string $source Source URL.
      * @param string $destination Destination file path.
      * @param array $fileInfo
-     * @return void
      */
     protected function _transfer($source, $destination, array $fileInfo)
     {
@@ -63,14 +62,6 @@ class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
             $client = $this->_getHttpClient($source);
             $client->setHeaders('Accept-encoding', 'identity');
             $client->setStream($destination);
-            //hack ucl
-            $client->setConfig(
-              array(
-                  'adapter'    => 'Zend_Http_Client_Adapter_Proxy',
-                  'proxy_host' => get_option('rosetta_proxy'),
-                  'proxy_port' => 8080
-              )
-            );
             $response = $client->request('GET');
         } catch (Zend_Http_Client_Exception $e) {
             throw new Omeka_File_Ingest_Exception(
@@ -92,7 +83,6 @@ class Omeka_File_Ingest_Url extends Omeka_File_Ingest_AbstractSourceIngest
      * @throws Omeka_File_Ingest_InvalidException
      * @param string $source Source URL.
      * @param array $info File info array (unused).
-     * @return void
      */
     protected function _validateSource($source, $info)
     {

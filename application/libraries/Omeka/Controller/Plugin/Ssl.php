@@ -23,13 +23,14 @@ class Omeka_Controller_Plugin_Ssl extends Zend_Controller_Plugin_Abstract
 
     private $_auth;
 
-    public function __construct($sslConfig, 
-                                $redirector,
-                                Zend_Auth $auth)
+    private $_trustProxy;
+
+    public function __construct($sslConfig, $redirector, Zend_Auth $auth, $trustProxy)
     {
         $this->_sslConfig = $sslConfig;
         $this->_redirector = $redirector;
         $this->_auth = $auth;
+        $this->_trustProxy = $trustProxy;
     }
 
     public function routeStartup(Zend_Controller_Request_Abstract $request)
@@ -63,10 +64,10 @@ class Omeka_Controller_Plugin_Ssl extends Zend_Controller_Plugin_Abstract
             return false;
         }
 
-        // It remains an open question as to whether this should be interpreted 
-        // as the 'universal' login action for all plugin modules (not just 
+        // It remains an open question as to whether this should be interpreted
+        // as the 'universal' login action for all plugin modules (not just
         // default).
-        return ($request->getActionName() == 'login') 
+        return ($request->getActionName() == 'login')
             && ($request->getControllerName() == 'users');
     }
 
@@ -80,18 +81,23 @@ class Omeka_Controller_Plugin_Ssl extends Zend_Controller_Plugin_Abstract
             return false;
         }
 
-        return (boolean)$this->_auth->getStorage()->read();
+        return (boolean) $this->_auth->getStorage()->read();
     }
 
     private function _isSslRequest($request)
     {
-        return $request->isSecure();
+        $isSecure = $request->isSecure();
+        if ($this->_trustProxy) {
+            return $isSecure || $this->_isForwardedHttps($request);
+        } else {
+            return $isSecure;
+        }
     }
 
     private function _redirect($request)
     {
         $_SERVER['HTTPS'] = 'on';
-        $secureUrl = $request->getScheme() . '://' 
+        $secureUrl = $request->getScheme() . '://'
                    . $request->getHttpHost() . $request->getRequestUri();
         return $this->_redirector->gotoUrl($secureUrl);
     }
@@ -99,5 +105,10 @@ class Omeka_Controller_Plugin_Ssl extends Zend_Controller_Plugin_Abstract
     private function _secureAllRequests()
     {
         return $this->_sslConfig == self::ALWAYS;
+    }
+
+    private function _isForwardedHttps($request)
+    {
+        return $request->getHeader('X-Forwarded-Proto') === 'https';
     }
 }

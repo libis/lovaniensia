@@ -1,7 +1,7 @@
 <?php
 /**
  * Omeka
- *
+ * 
  * @copyright Copyright 2007-2012 Roy Rosenzweig Center for History and New Media
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
@@ -9,9 +9,9 @@
 /**
  * Database manager object for Omeka
  *
- * While mostly a wrapper for a Zend_Db_Adapter instance, this also provides
+ * While mostly a wrapper for a Zend_Db_Adapter instance, this also provides 
  * shortcuts for retrieving table objects and table names for use in SQL.
- *
+ * 
  * @package Omeka\Db
  */
 class Omeka_Db
@@ -38,7 +38,7 @@ class Omeka_Db
     protected $_tables = array();
 
     /**
-     * The logger to use for logging SQL queries. If not set, no logging will
+     * The logger to use for logging SQL queries. If not set, no logging will 
      * be done.
      *
      * @var Zend_Log|null
@@ -58,7 +58,7 @@ class Omeka_Db
 
     /**
      * Delegate to the database adapter.
-     *
+     * 
      * @param string $m Method name.
      * @param array $a Method arguments.
      * @return mixed
@@ -86,6 +86,7 @@ class Omeka_Db
             if (2006 == $e->getCode()) {
                 $this->_adapter->closeConnection();
                 $this->_adapter->getConnection();
+                $this->_adapter->query($this->_getInitCommand());
                 return call_user_func_array(array($this->_adapter, $m), $a);
             }
             throw $e;
@@ -131,36 +132,39 @@ class Omeka_Db
      *
      * @return string
      */
-    public function getTableName($class) {
+    public function getTableName($class)
+    {
         return $this->getTable($class)->getTableName();
     }
 
     /**
      * Check whether the database tables have a prefix.
      *
-     * @return boolean
+     * @return bool
      */
-    public function hasPrefix() {
+    public function hasPrefix()
+    {
         return !empty($this->prefix);
     }
 
     /**
      * Retrieve a table object corresponding to the model class.
-     *
-     * Table classes can be extended by inheriting off of Omeka_Db_Table and
-     * then calling your table Table_ModelName, e.g. Table_Item or
-     * Table_Collection. For backwards compatibility you may call your table
-     * ModelNameTable, i.e. ItemTable or CollectionTable. The latter naming
+     * 
+     * Table classes can be extended by inheriting off of Omeka_Db_Table and 
+     * then calling your table Table_ModelName, e.g. Table_Item or 
+     * Table_Collection. For backwards compatibility you may call your table 
+     * ModelNameTable, i.e. ItemTable or CollectionTable. The latter naming 
      * pattern is deprecated.
-     *
-     * This will cache every table object so that tables are not instantiated
+     * 
+     * This will cache every table object so that tables are not instantiated 
      * multiple times for complicated web requests.
-     *
+     * 
      * @uses Omeka_Db::setTable()
      * @param string $class Model class name.
      * @return Omeka_Db_Table
      */
-    public function getTable($class) {
+    public function getTable($class)
+    {
 
         // Return the cached table object.
         if (array_key_exists($class, $this->_tables)) {
@@ -173,7 +177,7 @@ class Omeka_Db
 
         if (class_exists($tableClass)) {
             $table = new $tableClass($class, $this);
-        } else if (class_exists($tableClassDeprecated)) {
+        } elseif (class_exists($tableClassDeprecated)) {
             $table = new $tableClassDeprecated($class, $this);
         } else {
             $table = new Omeka_Db_Table($class, $this);
@@ -199,18 +203,18 @@ class Omeka_Db
     }
 
     /**
-     * Every query ends up looking like:
-     * INSERT INTO table (field, field2, field3, ...) VALUES (?, ?, ?, ...)
+     * Every query ends up looking like: 
+     * INSERT INTO table (field, field2, field3, ...) VALUES (?, ?, ?, ...) 
      * ON DUPLICATE KEY UPDATE field = ?, field2 = ?, ...
      *
-     * Note on portability: ON DUPLICATE KEY UPDATE is a MySQL extension.
+     * Note on portability: ON DUPLICATE KEY UPDATE is a MySQL extension.  
      * The advantage to using this is that it doesn't care whether a row exists already.
-     * Basically it combines what would be insert() and update() methods in other
+     * Basically it combines what would be insert() and update() methods in other 
      * ORMs into a single method
-     *
+     * 
      * @param string $table Table model class name.
      * @param array $values Rows to insert (or update).
-     * @return integer The ID for the row that got inserted (or updated).
+     * @return int The ID for the row that got inserted (or updated).
      */
     public function insert($table, array $values = array())
     {
@@ -257,7 +261,7 @@ class Omeka_Db
 
     /**
      * Log SQL query if logging is configured.
-     *
+     * 
      * This logs the query before variable substitution from bind params.
      *
      * @param string|Zend_Db_Select $sql
@@ -287,11 +291,11 @@ class Omeka_Db
 
     /**
      * Read the contents of an SQL file and execute all the queries therein.
-     *
-     * In addition to reading the file, this will make substitutions based on
+     * 
+     * In addition to reading the file, this will make substitutions based on 
      * specific naming conventions. Currently makes the following substitutions:
      * %PREFIX% will be replaced by the table prefix.
-     *
+     * 
      * @param string $filePath Path to the SQL file to load
      */
     public function loadSqlFile($filePath)
@@ -303,15 +307,16 @@ class Omeka_Db
         $subbedSql = str_replace('%PREFIX%', $this->prefix, $loadSql);
         $this->queryBlock($subbedSql, ";\n");
     }
+
     /**
-   * Get a command to be executed upon connecting.
-   *
-   * Currently sets the sql_mode for MySQL. The mode is depdendent on the
-   * version of the server, so we must wait until after connecting to
-   * determine what the command should be.
-   *
-   * @return string
-   */
+     * Get a command to be executed upon connecting.
+     *
+     * Currently sets the sql_mode for MySQL. The mode is depdendent on the
+     * version of the server, so we must wait until after connecting to
+     * determine what the command should be.
+     *
+     * @return string
+     */
     private function _getInitCommand()
     {
         $version = $this->_adapter->getServerVersion();

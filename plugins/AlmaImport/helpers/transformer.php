@@ -43,15 +43,17 @@ class Transformer{
     }
 
     public function parse_fields($fields){
-        $result='';
+        $result=array();
         foreach($fields as $field):
-            if(is_array($field[key($field)]['subfields'])):
+            if(isset($field[key($field)]['subfields'])):
                 $subfields = $field[key($field)]['subfields'];
-                $temp='';
-                foreach($subfields as $code):
-                    $temp[key($code)]=$code[key($code)];
-                endforeach;
-                $field[key($field)]['subfields']=$temp;
+                if(is_array($subfields)):
+                  $temp=array();
+                  foreach($subfields as $code):
+                      $temp[key($code)]=$code[key($code)];
+                  endforeach;
+                  $field[key($field)]['subfields']=$temp;
+                endif;
             endif;
             $result[][key($field)]=$field[key($field)];
 
@@ -64,15 +66,16 @@ class Transformer{
     }
 
     public function transform($fields,$representation){
-        $result="";
-        echo '<pre>';
+        $result=array();
+        /*echo '<pre>';
         var_dump($fields);
-        echo '</pre>';
+        echo '</pre>';*/
+        $result['source'][0] = "Other libraries";  
 
         foreach($fields as $field):
             //mms id & LIMO link
             if(isset($field["001"])):
-                $result["object_id"][]=$field["001"];
+                $result["object_id"][]= str_replace("A","",$field["001"]);
                 $result["LIMO"][]="https://services.libis.be/query?institution=KUL&view=KULeuven&query=any:".$field["001"];
             endif;
 
@@ -111,8 +114,8 @@ class Transformer{
 
             //place, publisher, author and contributor 710
             if(isset($field["710"])):
-              if($field["710"]['subfields']['4']=="prt" || $field["710"]['subfields']['4']=="pbl"
-              || $field["710"]['subfields']['4']=="bsl"):
+              if($field["710"]['subfields']['e']=="printer" || $field["710"]['subfields']['e']=="publisher"
+              || $field["710"]['subfields']['e']=="bookseller"):
                 $place = $field["710"]['subfields']['c'];
                 if($place == "Brussel" || $place == "Bruxelles"):
                   $place = "Brussel / Bruxelles";
@@ -121,7 +124,7 @@ class Transformer{
                 $result["place"] = array_unique($result["place"]);
 
                 $result["publisher"][]=$field["710"]['subfields']['a'];
-              elseif($field["710"]['subfields']['4']=="aut"):
+              elseif($field["710"]['subfields']['e']=="author"):
                 $result["creator"][]=$field["710"]['subfields']['a'];
               else:
                 $result["contributor"][]=$field["710"]['subfields']['a'];
@@ -163,6 +166,7 @@ class Transformer{
                         }
 
                         $result['external manuscript'][]= "<a target='_blank' href='".$url."'>".$name." ".$label."</a>";
+                        $result['external manuscript txt'][]= $name;
                     }
                 endif;
             endif;
@@ -172,8 +176,10 @@ class Transformer{
                   if ($field["852"]['subfields']['b'] == 'BCOL' || $field["852"]['subfields']['b'] == 'GBIB') {
                     if($field["852"]['subfields']['b'] == "BCOL"):
                       $value = "KU Leuven Libraries, Special Collections,";
+                      $result["physical copy filter"][] = "KU Leuven Libraries, Special Collections";
                     elseif($field["852"]['subfields']['b'] == "GBIB"):
                       $value = "KU Leuven Libraries, Maurits Sabbe Library,";
+                      $result["physical copy filter"][] = "KU Leuven Libraries, Maurits Sabbe Library";
                     endif;
 
                     if (isset($field["852"]['subfields']['k'])) {
@@ -235,7 +241,7 @@ class Transformer{
               endif;
 
               //Sigel not needed
-              $result['source'][] = $source;
+              $result['source'][0] = $source;
 
               $temp = array_slice($label,5);
 
@@ -256,7 +262,7 @@ class Transformer{
       				    $data .=" (". $field["700"]['subfields']['d'].")";
       			    }
 
-  	            if ($field["700"]['subfields']['4']=="aut") {
+  	            if ($field["700"]['subfields']['e']=="author") {
 
   		            $result["creator"][]=$data;
 

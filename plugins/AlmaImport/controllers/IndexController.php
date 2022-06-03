@@ -17,7 +17,7 @@ class AlmaImport_IndexController extends Omeka_Controller_AbstractActionControll
 {
     public function indexAction()
     {
-        $records="";
+        $records=array();
         $ids = isset($_POST['ids']) ? $_POST['ids'] : '';
         $download_images = false;
 
@@ -53,6 +53,41 @@ class AlmaImport_IndexController extends Omeka_Controller_AbstractActionControll
 
         //send to worker and predict result
         $this->view->assign(compact('ids','status','item_types','collections'));
+    }
+
+    public function updateAction()
+    {
+        $records=array();
+        //$ids = isset($_POST['ids']) ? $_POST['ids'] : '';
+        $download_images = false;
+        $id = explode("/",$_SERVER['REQUEST_URI']);
+        $record = end($id);
+
+        $status='';
+        //get ids
+        if($record):           
+            //make json
+            $talk = new AlmaTalker($record,get_option('alma_import_api_key'));
+            $marc_json = $talk->make_marc_json();
+           
+            $records[] = $marc_json;
+
+            $type = 25;
+            $collection = 16;
+            
+            //do lectio specific manipulation
+            $transformer = new Transformer($records);
+            $result = $transformer->get_array();
+
+            $status = $this->_import($result,$type,$collection,$download_images);
+        endif;
+
+        //get item types and collections
+        $item_types = get_records('ItemType',array(),999);
+        $collections = get_records('Collection',array(),999);
+       
+        //send to worker and predict result
+        $this->view->assign(compact('record','status'));
     }
 
     protected function _import($data,$type,$collection,$download_images){

@@ -48,6 +48,17 @@ class AlmaImportPlugin extends Omeka_Plugin_AbstractPlugin
                 array('module' => 'alma-import')
             )
         );
+        $router->addRoute(
+            'almaImportActionRoute',
+            new Zend_Controller_Router_Route(
+                'alma-import/index/:action/:id',
+                array(
+                    'module'        => 'alma-import',
+                    'controller'    => 'index'
+                    ),
+                array('id'          => '\d+')
+             )
+         );
 
     }
 

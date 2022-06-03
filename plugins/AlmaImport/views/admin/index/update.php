@@ -1,0 +1,1 @@
+<?php echo "Record ".$record." updated<br>";?>
