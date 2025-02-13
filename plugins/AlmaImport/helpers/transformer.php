@@ -35,6 +35,12 @@ class Transformer{
               $representation = false;
             endif;
 
+            if(isset($record['portfolio'])):
+              foreach($record['portfolio'] as $port):
+                $fields[]['portfolio'] = $port;
+              endforeach;
+            endif;
+
             $result = $this->transform($fields,$representation);
             $final['results'][]= $result;
         endforeach;
@@ -171,6 +177,23 @@ class Transformer{
                 endif;
             endif;
 
+            if(isset($field["portfolio"]) && !isset($field["856"])){
+              if($field["portfolio"]["linking_details"]){
+                $url = str_replace("jkey=","",$field["portfolio"]["linking_details"]["static_url"]);                
+
+                if($field["portfolio"]["public_note"]):
+                  $label = $field["portfolio"]["public_note"];
+                  $label = explode(": ",$label);
+                  $result['external manuscript'][]= '<a href="'.$url.'">'.$label[1].'</a>';
+                else:
+                  $result['external manuscript'][]= '<a href="'.$url.'">'.$url.'</a>';
+                endif;                
+              }
+              if($field["portfolio"]["public_note"]):
+                $result['external manuscript txt'][]= $field["portfolio"]["public_note"];
+              endif;
+            }
+
             if(isset($field["852"])){
                 if (isset($field["852"]['subfields']['b'])) {
                   if ($field["852"]['subfields']['b'] == 'BCOL' || $field["852"]['subfields']['b'] == 'GBIB') {
@@ -269,6 +292,25 @@ class Transformer{
   	            } else {
   		            $result["contributor"][]=$data;
   	            }
+            endif;
+
+            if (isset($field["100"])):
+              $data="";
+              if (isset($field["100"]['subfields']['a'])) {
+                $data .= $field["100"]['subfields']['a'];
+              }
+              if (isset($field["100"]['subfields']['b'])) {
+                $data .= " ".$field["100"]['subfields']['b'];
+              }
+              if (isset($field["100"]['subfields']['d'])) {
+                $data .=" (". $field["100"]['subfields']['d'].")";
+              }
+              //    if(isset($field["700"]['subfields']['e'])):
+              //$result["creator"][]= $field["700"]['subfields']['e'];
+              //endif;
+              if($data):
+                $result["creator"][]=$data;
+              endif;
             endif;
         endforeach;
 

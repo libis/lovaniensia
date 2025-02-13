@@ -115,7 +115,7 @@ class RosettaPlugin extends Omeka_Plugin_AbstractPlugin
 
             if(!empty($pids)):
                 foreach($pids as $pid):
-                    $obj = rosetta_download_image(get_option('rosetta_resolver').'/'.$pid.'/stream?quality=low');
+                    $obj = rosetta_download_image(get_option('rosetta_resolver').'/'.$pid.'/wstream?quality=default');
 
                     file_put_contents('/tmp/'.$pid.'_resolver',$obj);
 

@@ -10,7 +10,7 @@
             echo "<ul>";
             foreach($content as $fl => $file):
               //echo $fl."<br>";
-              echo "<li><a target='_blank' href='".$base_url."/".$fl."/stream?quality=low'>".$file['label']." - ".$file['file_label']."</a><Input type = 'Radio' Name ='pid' value= '".$fl."'>
+              echo "<li><a target='_blank' href='".$base_url."/".$fl."/wstream?quality=default'>".$file['file_label']."</a><Input type = 'Radio' Name ='pid' value= '".$fl."'>
               </li>";
             endforeach;
             echo '</ul><hr><br>';

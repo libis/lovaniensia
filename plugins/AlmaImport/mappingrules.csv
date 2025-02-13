@@ -16,5 +16,6 @@ LIMO|Item Type Metadata|LIMO
 pid|Item Type Metadata|Rosetta ID
 external manuscript|Item Type Metadata|External manuscript
 external manuscript txt|Item Type Metadata|External manuscript txt
+relation|Dublin Core|Relation
 hasVersion|Dublin Core|Has Version
 physical copy filter|Item Type Metadata|Physical copy filter

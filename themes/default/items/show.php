@@ -46,6 +46,8 @@
       </div>
     </div>
   </section>
+<?php else:?>
+  <?php $manifest =  metadata($item, array('Item Type Metadata','External manuscript'));?>  
 <?php endif; ?>
 <section class="metadata-section general-section">
     <div id="content" class='container' role="main" tabindex="-1">
@@ -201,11 +203,16 @@
                 <?php endif;?>
 
                 <?php if($text = metadata('item', array('Item Type Metadata','External manuscript'),array("all"=>true))):?>
+                  <?php 
+                  $labels = metadata('item', array('Item Type Metadata','External manuscript txt'),array("all"=>true)); 
+                  $i = 0;
+                  ?>
                   <div class="element">
                       <h3><?php echo __('Externally digitised copies');?></h3>
                       <ul class="element-text">
                       <?php foreach($text as $manu):?>
                         <li ><?php echo $manu;?></li>
+                        
                       <?php endforeach;?>
                       </ul>
                   </div>

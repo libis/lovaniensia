@@ -86,6 +86,32 @@ class AlmaTalker{
         return $records;
     }
 
+    public function get_portfolio_links(){
+        $rep_links = array();
+        $reps = $this->alma_curl($this->alma_url.$this->object_id."/portfolios?apikey=".$this->key);
+        $reps = new SimpleXMLElement($reps);
+        foreach($reps as $rep):
+            if($rep->id):
+                $attr = $rep->attributes();
+                $rep_links[]=$attr['link'];
+            endif;
+        endforeach;
+        return $rep_links;
+    }
+
+    public function get_portfolios(){
+        $links = $this->get_portfolio_links();
+        $records=array();
+        //exit(var_dump($links));
+        foreach($links as $link):
+            $rep = $this->alma_curl($link."?apikey=".$this->key);
+            $rep = new SimpleXMLElement($rep);
+            //$record = new File_MARCXML($rep,File_MARC::SOURCE_STRING);
+            $records[] = $rep;
+        endforeach;
+        return $records;
+    }
+
     public function get_holdings_links(){
         $hold_links = array();
         $holdings = $this->alma_curl($this->alma_url.$this->object_id."/holdings?apikey=".$this->key);
@@ -115,12 +141,14 @@ class AlmaTalker{
         $bibrecord = $this->get_bibrecord();
         $holdings = $this->get_holdings();
         $reps = $this->get_representations();
+        $ports = $this->get_portfolios();
         //var_dump($bibrecord);
         $json="";
 
         while ($record = $bibrecord->next()) {
             //this is the bibrecord
             $rep_json = array();
+            $port_json = array();
 
             foreach($holdings as $holding):
                 while ($record_hold = $holding->next()) {
@@ -136,15 +164,10 @@ class AlmaTalker{
 
             foreach($reps as $rep):
                 $rep_json[] = $rep;
-                /*while ($record_rep = $rep->next()) {
-                    //these are the representation records
-                    $fields = $record_rep->getFields();
-                    foreach($fields as $field):
-                        if($field->isDataField()):
-                            $record->appendField($field);
-                        endif;
-                    endforeach;
-                }*/
+            endforeach;
+
+            foreach($ports as $port):
+                $port_json[] = $port;
             endforeach;
 
             $json_record = $record->toJSON();
@@ -152,6 +175,9 @@ class AlmaTalker{
             if(!empty($rep_json)):
               $json_array['representation'] = $rep_json;
             endif;
+            if(!empty($port_json)):
+                $json_array['portfolio'] = $port_json;
+              endif;
             $json_record = json_encode($json_array);
             $json .= $json_record;
         }
