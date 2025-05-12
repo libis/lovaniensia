@@ -81,13 +81,13 @@
           <?php if ($type != 'News'): ?>
 
               <div class="links">
-                <?php if($text = metadata($item, array('Item Type Metadata','LIMO'))):?>
-                    <a class="catalogue" href="<?php echo $text;?>&builder=primo_opensearch&host=limo.libis.be&sort=title&step=200"><i class="material-icons">&#xE89E;</i> Catalogue</a>
+                <?php if($text = metadata($item, array('Item Type Metadata','MMS ID'))):?>
+                    <a class="catalogue" href="https://lib.is/<?php echo $text;?>"><i class="material-icons">&#xE89E;</i> Catalogue</a>
                 <?php elseif($text = metadata($item, array('Dublin Core','Identifier'),array("index"=>"1"))):?>
                     <a class="images" href="<?php echo $text;?>"><i class="material-icons">&#xE89E;</i> Catalogue</a>
                 <?php endif; ?>
                 <?php if($text = metadata($item, array('Item Type Metadata','Rosetta ID'))):?>
-                    <a class="images" href="//resolver.libis.be/<?php echo $text;?>/representation"><i class="material-icons">&#xE3B6;</i> Images</a>
+                    <a class="images" href="//lib.is/<?php echo $text;?>/representation"><i class="material-icons">&#xE3B6;</i> Images</a>
                 <?php elseif($text = metadata($item, array('Dublin Core','Relation'),array("index"=>"0"))):?>
                     <a class="images" href="<?php echo $text;?>"><i class="material-icons">&#xE3B6;</i> Images</a>
                 <?php endif; ?>
