@@ -150,7 +150,7 @@ class Importer{
     protected function add_files($item,$pids){
         foreach($pids as $pid):
             //download the file, start with the highest quality (to get more accurate metadata)
-            $obj = rosetta_download_image(get_option('rosetta_resolver').'/'.$pid.'/wstream?quality=default');
+            $obj = rosetta_download_image(get_option('rosetta_resolver').'/'.$pid.'/wstream');
 
             file_put_contents('/tmp/'.$pid.'_resolver',$obj);
 

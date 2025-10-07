@@ -6,11 +6,14 @@
     if($list = rosetta_get_list($base_url."/".urlencode($_GET['search'])."/list")):
         foreach ($list as $key => $rep):
             //var_dump($rep['content']);echo '<br><hr><br>';
+            if(!$rep['label'] == "Lage kwaliteit"):
+                continue;
+            endif;
             $content = $rep['content'];
             echo "<ul>";
             foreach($content as $fl => $file):
               //echo $fl."<br>";
-              echo "<li><a target='_blank' href='".$base_url."/".$fl."/wstream?quality=default'>".$file['file_label']."</a><Input type = 'Radio' Name ='pid' value= '".$fl."'>
+              echo "<li><a target='_blank' href='".$base_url."/".$fl."/stream'>".$file['file_label']."</a><Input type = 'Radio' Name ='pid' value= '".$fl."'>
               </li>";
             endforeach;
             echo '</ul><hr><br>';
